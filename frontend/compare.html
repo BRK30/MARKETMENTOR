@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MarketMentor | Compare Stocks</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #0b1120;
+    color: #f8fafc;
+}
+
+/* NAVIGATION */
+
+nav {
+    height: 70px;
+    background: #111827;
+    border-bottom: 1px solid #1f2937;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 45px;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    color: #38bdf8;
+}
+
+
+/* CONTAINER */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 30px 60px;
+}
+
+
+/* HEADER */
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: #94a3b8;
+}
+
+
+/* SELECTORS */
+
+.selector-box {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    padding: 22px;
+
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    margin-bottom: 25px;
+}
+
+select {
+    background: #0b1120;
+    color: white;
+
+    border: 1px solid #334155;
+    border-radius: 7px;
+
+    padding: 11px;
+
+    min-width: 180px;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+
+    border: none;
+    border-radius: 7px;
+
+    padding: 11px 20px;
+
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+
+/* STOCK CARDS */
+
+.stock-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+.stock-card {
+
+    background: #111827;
+
+    border: 1px solid #1f2937;
+
+    border-radius: 12px;
+
+    padding: 22px;
+}
+
+.stock-card h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.bullish {
+    color: #22c55e;
+}
+
+.metric {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 9px 0;
+
+    border-bottom: 1px solid #1f2937;
+
+    font-size: 13px;
+}
+
+.metric span:first-child {
+    color: #64748b;
+}
+
+
+/* RECOMMENDATION */
+
+.recommendation {
+
+    background: linear-gradient(
+        135deg,
+        #111827,
+        #172554
+    );
+
+    border: 1px solid #1e3a8a;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+}
+
+.recommendation h2 {
+    margin-bottom: 10px;
+}
+
+.recommendation p {
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+.recommendation strong {
+    color: #22c55e;
+}
+
+
+/* CHARTS */
+
+.chart-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+}
+
+.chart-box {
+
+    background: #111827;
+
+    border: 1px solid #1f2937;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+}
+
+.chart-box h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+
+    height: 300px;
+
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width: 950px) {
+
+    .stock-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .chart-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+@media(max-width: 600px) {
+
+    nav {
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .stock-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .selector-box {
+
+        flex-direction: column;
+
+    }
+
+    select,
+    button {
+
+        width: 100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <div class="logo">
+        Market<span>Mentor</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Dashboard
+        </a>
+
+        <a href="portfolio.html">
+            Portfolio
+        </a>
+
+        <a href="compare.html" class="active">
+            Compare
+        </a>
+
+        <a href="prediction.html">
+            AI Prediction
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <div class="page-header">
+
+        <h1>
+            Compare Stocks
+        </h1>
+
+        <p>
+            Compare up to four stocks and identify the strongest opportunity
+        </p>
+
+    </div>
+
+
+    <!-- SELECT STOCKS -->
+
+    <div class="selector-box">
+
+        <select id="stock1">
+
+            <option value="RELIANCE">
+                RELIANCE
+            </option>
+
+            <option value="TCS">
+                TCS
+            </option>
+
+            <option value="INFY">
+                INFY
+            </option>
+
+            <option value="HDFCBANK">
+                HDFCBANK
+            </option>
+
+        </select>
+
+
+        <select id="stock2">
+
+            <option value="TCS">
+                TCS
+            </option>
+
+            <option value="RELIANCE">
+                RELIANCE
+            </option>
+
+            <option value="INFY">
+                INFY
+            </option>
+
+            <option value="HDFCBANK">
+                HDFCBANK
+            </option>
+
+        </select>
+
+
+        <select id="stock3">
+
+            <option value="INFY">
+                INFY
+            </option>
+
+            <option value="RELIANCE">
+                RELIANCE
+            </option>
+
+            <option value="TCS">
+                TCS
+            </option>
+
+            <option value="HDFCBANK">
+                HDFCBANK
+            </option>
+
+        </select>
+
+
+        <select id="stock4">
+
+            <option value="HDFCBANK">
+                HDFCBANK
+            </option>
+
+            <option value="RELIANCE">
+                RELIANCE
+            </option>
+
+            <option value="TCS">
+                TCS
+            </option>
+
+            <option value="INFY">
+                INFY
+            </option>
+
+        </select>
+
+
+        <button onclick="compareStocks()">
+
+            Compare
+
+        </button>
+
+    </div>
+
+
+    <!-- STOCK CARDS -->
+
+    <div class="stock-grid">
+
+
+        <!-- RELIANCE -->
+
+        <div class="stock-card">
+
+            <h2 id="name1">
+                RELIANCE
+            </h2>
+
+            <div class="price">
+                ₹2,950
+            </div>
+
+            <div class="metric">
+                <span>Market Cap</span>
+                <span>₹19.9T</span>
+            </div>
+
+            <div class="metric">
+                <span>P/E Ratio</span>
+                <span>28.4</span>
+            </div>
+
+            <div class="metric">
+                <span>Dividend Yield</span>
+                <span>0.35%</span>
+            </div>
+
+            <div class="metric">
+                <span>52W High</span>
+                <span>₹3,024</span>
+            </div>
+
+            <div class="metric">
+                <span>52W Low</span>
+                <span>₹2,220</span>
+            </div>
+
+        </div>
+
+
+        <!-- TCS -->
+
+        <div class="stock-card">
+
+            <h2 id="name2">
+                TCS
+            </h2>
+
+            <div class="price">
+                ₹3,650
+            </div>
+
+            <div class="metric">
+                <span>Market Cap</span>
+                <span>₹13.2T</span>
+            </div>
+
+            <div class="metric">
+                <span>P/E Ratio</span>
+                <span>27.8</span>
+            </div>
+
+            <div class="metric">
+                <span>Dividend Yield</span>
+                <span>1.25%</span>
+            </div>
+
+            <div class="metric">
+                <span>52W High</span>
+                <span>₹4,592</span>
+            </div>
+
+            <div class="metric">
+                <span>52W Low</span>
+                <span>₹3,050</span>
+            </div>
+
+        </div>
+
+
+        <!-- INFY -->
+
+        <div class="stock-card">
+
+            <h2 id="name3">
+                INFY
+            </h2>
+
+            <div class="price">
+                ₹1,500
+            </div>
+
+            <div class="metric">
+                <span>Market Cap</span>
+                <span>₹6.2T</span>
+            </div>
+
+            <div class="metric">
+                <span>P/E Ratio</span>
+                <span>24.6</span>
+            </div>
+
+            <div class="metric">
+                <span>Dividend Yield</span>
+                <span>2.75%</span>
+            </div>
+
+            <div class="metric">
+                <span>52W High</span>
+                <span>₹1,975</span>
+            </div>
+
+            <div class="metric">
+                <span>52W Low</span>
+                <span>₹1,307</span>
+            </div>
+
+        </div>
+
+
+        <!-- HDFC -->
+
+        <div class="stock-card">
+
+            <h2 id="name4">
+                HDFCBANK
+            </h2>
+
+            <div class="price">
+                ₹1,680
+            </div>
+
+            <div class="metric">
+                <span>Market Cap</span>
+                <span>₹12.8T</span>
+            </div>
+
+            <div class="metric">
+                <span>P/E Ratio</span>
+                <span>18.9</span>
+            </div>
+
+            <div class="metric">
+                <span>Dividend Yield</span>
+                <span>1.15%</span>
+            </div>
+
+            <div class="metric">
+                <span>52W High</span>
+                <span>₹1,880</span>
+            </div>
+
+            <div class="metric">
+                <span>52W Low</span>
+                <span>₹1,363</span>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- AI RECOMMENDATION -->
+
+    <div class="recommendation">
+
+        <h2>
+            🤖 AI Recommendation
+        </h2>
+
+        <p>
+
+            Based on the current demonstration metrics,
+            <strong>HDFCBANK</strong> shows an attractive
+            valuation with a relatively lower P/E ratio.
+
+            TCS and INFY provide strong dividend potential,
+            while RELIANCE shows strong market presence.
+
+        </p>
+
+    </div>
+
+
+    <!-- CHARTS -->
+
+    <div class="chart-grid">
+
+
+        <div class="chart-box">
+
+            <h2>
+                Price Comparison
+            </h2>
+
+            <div class="chart-container">
+
+                <canvas id="priceChart"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div class="chart-box">
+
+            <h2>
+                P/E Ratio Comparison
+            </h2>
+
+            <div class="chart-container">
+
+                <canvas id="peChart"></canvas>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+function compareStocks() {
+
+    const stock1 =
+        document.getElementById("stock1").value;
+
+    const stock2 =
+        document.getElementById("stock2").value;
+
+    const stock3 =
+        document.getElementById("stock3").value;
+
+    const stock4 =
+        document.getElementById("stock4").value;
+
+
+    document.getElementById("name1").innerText =
+        stock1;
+
+    document.getElementById("name2").innerText =
+        stock2;
+
+    document.getElementById("name3").innerText =
+        stock3;
+
+    document.getElementById("name4").innerText =
+        stock4;
+
+}
+
+
+const priceData = {
+
+    RELIANCE: 2950,
+
+    TCS: 3650,
+
+    INFY: 1500,
+
+    HDFCBANK: 1680
+
+};
+
+
+const peData = {
+
+    RELIANCE: 28.4,
+
+    TCS: 27.8,
+
+    INFY: 24.6,
+
+    HDFCBANK: 18.9
+
+};
+
+
+const selectedStocks = [
+
+    "RELIANCE",
+
+    "TCS",
+
+    "INFY",
+
+    "HDFCBANK"
+
+];
+
+
+new Chart(
+
+    document.getElementById("priceChart"),
+
+    {
+
+        type: "bar",
+
+        data: {
+
+            labels: selectedStocks,
+
+            datasets: [{
+
+                label: "Price (₹)",
+
+                data: selectedStocks.map(
+                    stock => priceData[stock]
+                )
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+
+                    labels: {
+
+                        color: "#cbd5e1"
+
+                    }
+
+                }
+
+            },
+
+            scales: {
+
+                x: {
+
+                    ticks: {
+
+                        color: "#94a3b8"
+
+                    },
+
+                    grid: {
+
+                        color: "#1f2937"
+
+                    }
+
+                },
+
+                y: {
+
+                    ticks: {
+
+                        color: "#94a3b8"
+
+                    },
+
+                    grid: {
+
+                        color: "#1f2937"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+
+new Chart(
+
+    document.getElementById("peChart"),
+
+    {
+
+        type: "bar",
+
+        data: {
+
+            labels: selectedStocks,
+
+            datasets: [{
+
+                label: "P/E Ratio",
+
+                data: selectedStocks.map(
+                    stock => peData[stock]
+                )
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+
+                    labels: {
+
+                        color: "#cbd5e1"
+
+                    }
+
+                }
+
+            },
+
+            scales: {
+
+                x: {
+
+                    ticks: {
+
+                        color: "#94a3b8"
+
+                    },
+
+                    grid: {
+
+                        color: "#1f2937"
+
+                    }
+
+                },
+
+                y: {
+
+                    ticks: {
+
+                        color: "#94a3b8"
+
+                    },
+
+                    grid: {
+
+                        color: "#1f2937"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

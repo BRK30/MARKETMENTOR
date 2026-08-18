@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MarketMentor | AI Stock Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0b1120;
+            color: #f8fafc;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            height: 70px;
+
+            background: #111827;
+
+            border-bottom: 1px solid #1f2937;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 45px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+
+            font-weight: bold;
+
+            color: white;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #38bdf8;
+        }
+
+
+        /* HERO */
+
+        .hero {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 70px 30px 40px;
+
+        }
+
+        .badge {
+
+            display: inline-block;
+
+            background: #0f2942;
+
+            color: #38bdf8;
+
+            padding: 8px 14px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .hero h1 {
+
+            font-size: 52px;
+
+            max-width: 700px;
+
+            line-height: 1.1;
+
+            margin-bottom: 20px;
+
+        }
+
+        .hero h1 span {
+
+            color: #38bdf8;
+
+        }
+
+        .hero p {
+
+            max-width: 650px;
+
+            color: #94a3b8;
+
+            line-height: 1.7;
+
+            font-size: 17px;
+
+        }
+
+
+        .hero-buttons {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            gap: 15px;
+
+        }
+
+        .btn {
+
+            padding: 13px 22px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+        .primary {
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+        .secondary {
+
+            background: #1e293b;
+
+            color: white;
+
+            border: 1px solid #334155;
+
+        }
+
+
+        /* MARKET CARDS */
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 20px 30px 60px;
+
+        }
+
+        .section-title {
+
+            font-size: 22px;
+
+            margin: 25px 0 18px;
+
+        }
+
+        .market-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+
+        }
+
+        .market-card {
+
+            background: #111827;
+
+            border: 1px solid #1f2937;
+
+            padding: 22px;
+
+            border-radius: 12px;
+
+        }
+
+        .market-card .symbol {
+
+            color: #94a3b8;
+
+            font-size: 13px;
+
+        }
+
+        .market-card h3 {
+
+            margin: 10px 0;
+
+            font-size: 20px;
+
+        }
+
+        .up {
+
+            color: #22c55e;
+
+        }
+
+        .down {
+
+            color: #ef4444;
+
+        }
+
+        .change {
+
+            font-size: 13px;
+
+        }
+
+
+        /* FEATURE CARDS */
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+        }
+
+        .feature {
+
+            background: #111827;
+
+            border: 1px solid #1f2937;
+
+            border-radius: 14px;
+
+            padding: 28px;
+
+            transition: 0.3s;
+
+        }
+
+        .feature:hover {
+
+            transform: translateY(-4px);
+
+            border-color: #2563eb;
+
+        }
+
+        .icon {
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .feature h3 {
+
+            margin-bottom: 10px;
+
+        }
+
+        .feature p {
+
+            color: #94a3b8;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+
+        }
+
+        .feature a {
+
+            display: inline-block;
+
+            margin-top: 18px;
+
+            color: #38bdf8;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+        }
+
+
+        /* AI INSIGHT */
+
+        .ai-box {
+
+            margin-top: 25px;
+
+            background: linear-gradient(
+                135deg,
+                #111827,
+                #172554
+            );
+
+            border: 1px solid #1e3a8a;
+
+            border-radius: 14px;
+
+            padding: 30px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 30px;
+
+        }
+
+        .ai-box h2 {
+
+            margin-bottom: 10px;
+
+        }
+
+        .ai-box p {
+
+            color: #94a3b8;
+
+            line-height: 1.6;
+
+            max-width: 700px;
+
+        }
+
+        .trend {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #22c55e;
+
+        }
+
+
+        /* FOOTER */
+
+        footer {
+
+            border-top: 1px solid #1f2937;
+
+            text-align: center;
+
+            padding: 25px;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+        }
+
+
+        /* RESPONSIVE */
+
+        @media(max-width: 900px) {
+
+            .market-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            .features {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .hero h1 {
+
+                font-size: 42px;
+
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            nav {
+
+                padding: 0 20px;
+
+            }
+
+            .nav-links {
+
+                gap: 10px;
+
+            }
+
+            .nav-links a {
+
+                font-size: 11px;
+
+            }
+
+            .market-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .hero {
+
+                padding-top: 45px;
+
+            }
+
+            .hero h1 {
+
+                font-size: 36px;
+
+            }
+
+            .ai-box {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <div class="logo">
+        Market<span>Mentor</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html" class="active">
+            Dashboard
+        </a>
+
+        <a href="portfolio.html">
+            Portfolio
+        </a>
+
+        <a href="compare.html">
+            Compare
+        </a>
+
+        <a href="prediction.html">
+            AI Prediction
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="badge">
+        🤖 AI Powered Stock Analysis
+    </div>
+
+    <h1>
+        Make smarter decisions with
+        <span>MarketMentor</span>
+    </h1>
+
+    <p>
+
+        Monitor your portfolio, compare stocks and explore
+        AI-powered price predictions through a unified
+        stock market analysis platform.
+
+    </p>
+
+
+    <div class="hero-buttons">
+
+        <a
+            href="portfolio.html"
+            class="btn primary"
+        >
+            View Portfolio
+        </a>
+
+        <a
+            href="prediction.html"
+            class="btn secondary"
+        >
+            Open AI Prediction
+        </a>
+
+    </div>
+
+</section>
+
+
+<div class="container">
+
+
+    <!-- MARKET OVERVIEW -->
+
+    <h2 class="section-title">
+        Market Overview
+    </h2>
+
+
+    <div class="market-grid">
+
+
+        <div class="market-card">
+
+            <div class="symbol">
+                RELIANCE
+            </div>
+
+            <h3>
+                ₹2,950
+            </h3>
+
+            <div class="change up">
+                ▲ +2.14%
+            </div>
+
+        </div>
+
+
+        <div class="market-card">
+
+            <div class="symbol">
+                TCS
+            </div>
+
+            <h3>
+                ₹3,650
+            </h3>
+
+            <div class="change up">
+                ▲ +1.82%
+            </div>
+
+        </div>
+
+
+        <div class="market-card">
+
+            <div class="symbol">
+                INFY
+            </div>
+
+            <h3>
+                ₹1,500
+            </h3>
+
+            <div class="change up">
+                ▲ +1.25%
+            </div>
+
+        </div>
+
+
+        <div class="market-card">
+
+            <div class="symbol">
+                HDFCBANK
+            </div>
+
+            <h3>
+                ₹1,680
+            </h3>
+
+            <div class="change up">
+                ▲ +1.61%
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- FEATURES -->
+
+    <h2 class="section-title">
+        MarketMentor Tools
+    </h2>
+
+
+    <div class="features">
+
+
+        <div class="feature">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h3>
+                Portfolio
+            </h3>
+
+            <p>
+                Track total investment, current portfolio
+                value, holdings and profit or loss with
+                visual analytics.
+            </p>
+
+            <a href="portfolio.html">
+                Open Portfolio →
+            </a>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="icon">
+                ⚖️
+            </div>
+
+            <h3>
+                Compare Stocks
+            </h3>
+
+            <p>
+                Compare up to four stocks using price,
+                market cap, P/E ratio, dividend yield
+                and AI recommendations.
+            </p>
+
+            <a href="compare.html">
+                Compare Stocks →
+            </a>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="icon">
+                🤖
+            </div>
+
+            <h3>
+                AI Prediction
+            </h3>
+
+            <p>
+                Generate tomorrow and next-week price
+                predictions with trend analysis and
+                confidence scores.
+            </p>
+
+            <a href="prediction.html">
+                Predict Price →
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- AI INSIGHT -->
+
+    <div class="ai-box">
+
+        <div>
+
+            <h2>
+                🤖 MarketMentor AI Insight
+            </h2>
+
+            <p>
+                Based on the current demonstration data,
+                the overall market trend is positive.
+                Explore individual stocks using the
+                AI Prediction module.
+            </p>
+
+        </div>
+
+        <div class="trend">
+            BULLISH
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<footer>
+
+    MarketMentor © 2026
+
+    <br><br>
+
+    AI-based stock market analysis platform
+
+</footer>
+
+
+</body>
+
+</html>
