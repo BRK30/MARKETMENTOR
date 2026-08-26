@@ -1,0 +1,497 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 245px;
+    min-height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e7eaf0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 20px 14px;
+    z-index: 10;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px 28px;
+}
+
+.brand-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.brand h2 {
+    font-size: 18px;
+    color: #172033;
+}
+
+.brand span {
+    display: block;
+    font-size: 10px;
+    color: #7b8495;
+    margin-top: 3px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #4b5567;
+    padding: 11px 12px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.nav a:hover {
+    background: #f0f5ff;
+    color: #2563eb;
+}
+
+.nav a.active {
+    background: #eaf1ff;
+    color: #2563eb;
+}
+
+.nav-icon {
+    width: 20px;
+    text-align: center;
+}
+
+/* =========================
+   MARKET INDICES
+========================= */
+
+.market-section {
+    margin-top: 25px;
+    padding: 0 10px;
+}
+
+.market-title {
+    font-size: 10px;
+    font-weight: bold;
+    color: #8b93a3;
+    letter-spacing: 0.7px;
+    margin-bottom: 15px;
+}
+
+.index-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f1f4;
+}
+
+.index-name {
+    font-size: 11px;
+    color: #566072;
+}
+
+.index-value {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.index-change {
+    color: #16a34a;
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile {
+    position: absolute;
+    bottom: 18px;
+    left: 14px;
+    right: 14px;
+    border-top: 1px solid #e9ebf0;
+    padding-top: 15px;
+}
+
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #e9efff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.profile-name {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.profile-plan {
+    font-size: 10px;
+    color: #8b93a3;
+    margin-top: 2px;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main {
+    margin-left: 245px;
+    width: calc(100% - 245px);
+    padding: 24px 28px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.page-title {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.page-subtitle {
+    color: #7a8495;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    border: 1px solid #e0e4eb;
+    background: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+/* =========================
+   KPI CARDS
+========================= */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-bottom: 15px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e8ebf1;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(30, 41, 59, 0.04);
+}
+
+.kpi-card {
+    padding: 18px;
+    position: relative;
+    min-height: 120px;
+}
+
+.kpi-title {
+    color: #7a8495;
+    font-size: 11px;
+}
+
+.kpi-value {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.kpi-change {
+    color: #16a34a;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+.kpi-icon {
+    position: absolute;
+    right: 16px;
+    top: 20px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #eef4ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.panel {
+    padding: 18px;
+}
+
+.panel-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.panel-subtitle {
+    font-size: 11px;
+    color: #7a8495;
+    margin-top: 4px;
+}
+
+/* =========================
+   CHART
+========================= */
+
+.chart-box {
+    height: 260px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+}
+
+.fake-chart {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.fake-chart svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================
+   HOLDINGS TABLE
+========================= */
+
+.table-card {
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.search {
+    border: 1px solid #e0e4eb;
+    border-radius: 7px;
+    padding: 9px 12px;
+    font-size: 11px;
+    outline: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    background: #f8f9fc;
+    color: #6d7686;
+    font-size: 10px;
+    padding: 11px;
+    font-weight: 600;
+}
+
+td {
+    padding: 12px 11px;
+    border-bottom: 1px solid #edf0f4;
+    font-size: 11px;
+}
+
+.stock-name {
+    font-weight: 700;
+}
+
+.stock-sub {
+    font-size: 9px;
+    color: #8b93a3;
+    margin-top: 3px;
+}
+
+.positive {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.negative {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+/* =========================
+   SMALL CARDS
+========================= */
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 0;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-name {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.list-value {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1200px) {
+    .kpi-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 70px;
+    }
+
+    .brand h2,
+    .brand span,
+    .nav a span:not(.nav-icon),
+    .market-section,
+    .profile-name,
+    .profile-plan {
+        display: none;
+    }
+
+    .main {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .main {
+        padding: 15px;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}

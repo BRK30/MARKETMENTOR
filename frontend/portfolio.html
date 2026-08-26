@@ -3,331 +3,63 @@
 
 <head>
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MarketMentor | Portfolio</title>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: #0b1120;
-    color: #f8fafc;
-}
-
-
-/* NAVIGATION */
-
-nav {
-
-    height: 70px;
-
-    background: #111827;
-
-    border-bottom: 1px solid #1f2937;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 45px;
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 100;
-}
-
-.logo {
-
-    font-size: 24px;
-
-    font-weight: bold;
-}
-
-.logo span {
-
-    color: #38bdf8;
-}
-
-.nav-links {
-
-    display: flex;
-
-    gap: 28px;
-}
-
-.nav-links a {
-
-    color: #94a3b8;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    transition: 0.3s;
-}
-
-.nav-links a:hover,
-.nav-links .active {
-
-    color: #38bdf8;
-}
-
-
-/* CONTAINER */
-
-.container {
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding: 40px 30px 60px;
-}
-
-
-/* HEADER */
-
-.page-header {
-
-    margin-bottom: 30px;
-}
-
-.page-header h1 {
-
-    font-size: 32px;
-
-    margin-bottom: 8px;
-}
-
-.page-header p {
-
-    color: #94a3b8;
-}
-
-
-/* SUMMARY CARDS */
-
-.summary {
-
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 18px;
-
-    margin-bottom: 25px;
-}
-
-.card {
-
-    background: #111827;
-
-    border: 1px solid #1f2937;
-
-    border-radius: 12px;
-
-    padding: 22px;
-}
-
-.card-title {
-
-    color: #94a3b8;
-
-    font-size: 13px;
-
-    margin-bottom: 10px;
-}
-
-.card-value {
-
-    font-size: 25px;
-
-    font-weight: bold;
-}
-
-.green {
-
-    color: #22c55e;
-}
-
-.red {
-
-    color: #ef4444;
-}
-
-
-/* CONTENT GRID */
-
-.content-grid {
-
-    display: grid;
-
-    grid-template-columns: 1.5fr 1fr;
-
-    gap: 20px;
-
-    margin-bottom: 20px;
-}
-
-
-/* SECTION */
-
-.section {
-
-    background: #111827;
-
-    border: 1px solid #1f2937;
-
-    border-radius: 12px;
-
-    padding: 25px;
-}
-
-.section h2 {
-
-    font-size: 18px;
-
-    margin-bottom: 20px;
-}
-
-
-/* TABLE */
-
-.table-wrapper {
-
-    overflow-x: auto;
-}
-
-table {
-
-    width: 100%;
-
-    border-collapse: collapse;
-}
-
-th {
-
-    color: #64748b;
-
-    text-align: left;
-
-    font-size: 12px;
-
-    padding: 12px;
-
-    border-bottom: 1px solid #1f2937;
-}
-
-td {
-
-    padding: 15px 12px;
-
-    border-bottom: 1px solid #1f2937;
-
-    font-size: 14px;
-}
-
-.stock {
-
-    font-weight: bold;
-}
-
-.profit {
-
-    color: #22c55e;
-}
-
-.loss {
-
-    color: #ef4444;
-}
-
-
-/* CHART */
-
-.chart-container {
-
-    position: relative;
-
-    height: 280px;
-}
-
-
-/* ALLOCATION */
-
-.allocation {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    min-height: 280px;
-}
-
-
-/* RESPONSIVE */
-
-@media(max-width: 900px) {
-
-    .summary {
-
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .content-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-}
-
-@media(max-width: 600px) {
-
-    nav {
-
-        padding: 0 20px;
-    }
-
-    .nav-links {
-
-        gap: 10px;
-    }
-
-    .nav-links a {
-
-        font-size: 11px;
-    }
-
-    .summary {
-
-        grid-template-columns: 1fr;
-    }
-
-    .page-header h1 {
-
-        font-size: 26px;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MarketMentor | Portfolio</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .portfolio-chart {
+            height: 280px;
+            margin-top: 20px;
+        }
+
+        .allocation-chart {
+            height: 250px;
+            margin-top: 15px;
+        }
+
+        .stock-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: #eef4ff;
+            color: #2563eb;
+            font-weight: 700;
+            margin-right: 8px;
+            font-size: 11px;
+        }
+
+        .portfolio-stock {
+            display: flex;
+            align-items: center;
+        }
+
+        .loading-text {
+            color: #2563eb;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+
+        @media(max-width:900px) {
+
+            .portfolio-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -335,272 +67,1042 @@ td {
 <body>
 
 
-<!-- NAVIGATION -->
-
-<nav>
-
-    <div class="logo">
-        Market<span>Mentor</span>
-    </div>
-
-    <div class="nav-links">
-
-        <a href="index.html">
-            Dashboard
-        </a>
-
-        <a href="portfolio.html" class="active">
-            Portfolio
-        </a>
-
-        <a href="compare.html">
-            Compare
-        </a>
-
-        <a href="prediction.html">
-            AI Prediction
-        </a>
-
-    </div>
-
-</nav>
+<div class="app">
 
 
-<!-- MAIN -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-<div class="container">
-
-
-    <div class="page-header">
-
-        <h1>
-            My Portfolio
-        </h1>
-
-        <p>
-            Track your investments and portfolio performance
-        </p>
-
-    </div>
+    <aside class="sidebar">
 
 
-    <!-- SUMMARY -->
+        <div class="brand">
 
-    <div class="summary">
-
-
-        <div class="card">
-
-            <div class="card-title">
-                Total Investment
+            <div class="brand-logo">
+                M
             </div>
 
-            <div class="card-value">
-                ₹1,00,000
-            </div>
+            <div>
 
-        </div>
+                <h2>MarketMentor</h2>
 
-
-        <div class="card">
-
-            <div class="card-title">
-                Current Value
-            </div>
-
-            <div class="card-value">
-                ₹1,12,450
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-title">
-                Profit / Loss
-            </div>
-
-            <div class="card-value green">
-                +₹12,450
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-title">
-                Total Holdings
-            </div>
-
-            <div class="card-value">
-                4
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <!-- HOLDINGS + ALLOCATION -->
-
-    <div class="content-grid">
-
-
-        <div class="section">
-
-            <h2>
-                Holdings
-            </h2>
-
-
-            <div class="table-wrapper">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>Stock</th>
-
-                            <th>Qty</th>
-
-                            <th>Invested</th>
-
-                            <th>Current</th>
-
-                            <th>P/L</th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody>
-
-
-                        <tr>
-
-                            <td class="stock">
-                                RELIANCE
-                            </td>
-
-                            <td>10</td>
-
-                            <td>₹28,000</td>
-
-                            <td>₹29,500</td>
-
-                            <td class="profit">
-                                +₹1,500
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td class="stock">
-                                TCS
-                            </td>
-
-                            <td>8</td>
-
-                            <td>₹28,000</td>
-
-                            <td>₹29,200</td>
-
-                            <td class="profit">
-                                +₹1,200
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td class="stock">
-                                INFY
-                            </td>
-
-                            <td>15</td>
-
-                            <td>₹21,000</td>
-
-                            <td>₹22,500</td>
-
-                            <td class="profit">
-                                +₹1,500
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td class="stock">
-                                HDFCBANK
-                            </td>
-
-                            <td>12</td>
-
-                            <td>₹23,000</td>
-
-                            <td>₹31,250</td>
-
-                            <td class="profit">
-                                +₹8,250
-                            </td>
-
-                        </tr>
-
-
-                    </tbody>
-
-                </table>
+                <span>
+                    AI-Powered Stock Intelligence
+                </span>
 
             </div>
 
         </div>
 
 
-        <div class="section">
+        <!-- NAVIGATION -->
 
-            <h2>
-                Portfolio Allocation
-            </h2>
+        <nav class="nav">
 
-            <div class="allocation">
 
-                <canvas id="allocationChart"></canvas>
+            <a href="index.html">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="#">
+
+                <span class="nav-icon">
+                    ☆
+                </span>
+
+                <span>
+                    Live Market
+                </span>
+
+            </a>
+
+
+            <a href="portfolio.html"
+               class="active">
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                <span>
+                    Portfolio
+                </span>
+
+            </a>
+
+
+            <a href="compare.html">
+
+                <span class="nav-icon">
+                    ◫
+                </span>
+
+                <span>
+                    Compare Stocks
+                </span>
+
+            </a>
+
+
+            <a href="prediction.html">
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                <span>
+                    AI Prediction
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- =====================================================
+             MARKET INDICES
+        ====================================================== -->
+
+        <div class="market-section">
+
+            <div class="market-title">
+                MARKET INDICES
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    NIFTY 50
+                </div>
+
+                <div class="index-value">
+                    24,636.00
+                </div>
+
+                <div class="index-change">
+                    +116.10 (0.47%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    SENSEX
+                </div>
+
+                <div class="index-value">
+                    81,067.71
+                </div>
+
+                <div class="index-change">
+                    +295.43 (0.37%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    BANK NIFTY
+                </div>
+
+                <div class="index-value">
+                    55,292.35
+                </div>
+
+                <div class="index-change">
+                    +210.55 (0.38%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    FIN NIFTY
+                </div>
+
+                <div class="index-value">
+                    24,599.50
+                </div>
+
+                <div class="index-change">
+                    +101.75 (0.42%)
+                </div>
 
             </div>
 
         </div>
 
 
-    </div>
+        <!-- =====================================================
+             PROFILE
+        ====================================================== -->
 
+        <div class="profile">
 
-    <!-- PERFORMANCE -->
+            <div class="profile-top">
 
-    <div class="section">
+                <div class="avatar">
+                    AR
+                </div>
 
-        <h2>
-            Portfolio Performance
-        </h2>
+                <div>
 
-        <div class="chart-container">
+                    <div class="profile-name">
+                        MarketMentor User
+                    </div>
 
-            <canvas id="performanceChart"></canvas>
+                    <div class="profile-plan">
+                        AI Analytics
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-    </div>
 
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <div class="header">
+
+
+            <div>
+
+                <div class="page-title">
+                    My Portfolio
+                </div>
+
+                <div class="page-subtitle">
+                    Track your investments and live portfolio performance
+                </div>
+
+                <div id="loading"
+                     class="loading-text">
+
+                    Loading latest market prices...
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+
+                <button
+                    class="btn"
+                    onclick="loadPortfolio()">
+
+                    ↻ Refresh
+
+                </button>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="alert('Add Stock feature can be added next.')">
+
+                    + Add Stock
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             KPI CARDS
+        ====================================================== -->
+
+        <div class="kpi-grid">
+
+
+            <!-- TOTAL INVESTMENT -->
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Total Investment
+                </div>
+
+                <div class="kpi-value"
+                     id="totalInvestment">
+
+                    ₹1,00,000
+
+                </div>
+
+                <div class="kpi-change">
+                    Invested Capital
+                </div>
+
+                <div class="kpi-icon">
+                    ₹
+                </div>
+
+            </div>
+
+
+            <!-- CURRENT VALUE -->
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Current Value
+                </div>
+
+                <div class="kpi-value"
+                     id="currentValue">
+
+                    Loading...
+
+                </div>
+
+                <div class="kpi-change"
+                     id="returnPercent">
+
+                    -
+
+                </div>
+
+                <div class="kpi-icon">
+                    ↗
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL PROFIT -->
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Total Profit
+                </div>
+
+                <div class="kpi-value positive"
+                     id="totalProfit">
+
+                    Loading...
+
+                </div>
+
+                <div class="kpi-change">
+                    Portfolio Gain
+                </div>
+
+                <div class="kpi-icon">
+                    ↑
+                </div>
+
+            </div>
+
+
+            <!-- HOLDINGS -->
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Total Holdings
+                </div>
+
+                <div class="kpi-value">
+                    4
+                </div>
+
+                <div class="kpi-change">
+                    Active Stocks
+                </div>
+
+                <div class="kpi-icon">
+                    ◉
+                </div>
+
+            </div>
+
+
+            <!-- BEST PERFORMER -->
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Best Performer
+                </div>
+
+                <div class="kpi-value"
+                     id="bestPerformer">
+
+                    Loading...
+
+                </div>
+
+                <div class="kpi-change"
+                     id="bestReturn">
+
+                    -
+
+                </div>
+
+                <div class="kpi-icon">
+                    ★
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =====================================================
+             CHARTS
+        ====================================================== -->
+
+        <div class="grid-2 portfolio-grid">
+
+
+            <!-- PERFORMANCE -->
+
+            <div class="card panel">
+
+
+                <div class="panel-title">
+                    Portfolio Performance
+                </div>
+
+                <div class="panel-subtitle">
+                    Real historical portfolio value using yfinance
+                </div>
+
+
+                <div class="portfolio-chart">
+
+                    <canvas id="performanceChart"></canvas>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ALLOCATION -->
+
+            <div class="card panel">
+
+
+                <div class="panel-title">
+                    Portfolio Allocation
+                </div>
+
+                <div class="panel-subtitle">
+                    Current distribution across holdings
+                </div>
+
+
+                <div class="allocation-chart">
+
+                    <canvas id="allocationChart"></canvas>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =====================================================
+             HOLDINGS
+        ====================================================== -->
+
+        <div class="card table-card">
+
+
+            <div class="table-header">
+
+
+                <div>
+
+                    <div class="panel-title">
+                        Holdings
+                    </div>
+
+                    <div class="panel-subtitle">
+                        Current portfolio positions
+                    </div>
+
+                </div>
+
+
+                <input
+                    type="text"
+                    class="search"
+                    placeholder="Search stocks..."
+                    onkeyup="searchHoldings()"
+                    id="stockSearch">
+
+
+            </div>
+
+
+            <table id="holdingsTable">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            STOCK
+                        </th>
+
+                        <th>
+                            QTY
+                        </th>
+
+                        <th>
+                            INVESTED
+                        </th>
+
+                        <th>
+                            CURRENT VALUE
+                        </th>
+
+                        <th>
+                            P/L
+                        </th>
+
+                        <th>
+                            RETURN
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="holdingsBody">
+
+
+                    <!-- RELIANCE -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="portfolio-stock">
+
+                                <span class="stock-badge">
+                                    R
+                                </span>
+
+                                <div>
+
+                                    <div class="stock-name">
+                                        RELIANCE
+                                    </div>
+
+                                    <div class="stock-sub">
+                                        RELIANCE · NSE
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            10
+                        </td>
+
+
+                        <td>
+                            ₹28,000
+                        </td>
+
+
+                        <td id="value-RELIANCE">
+                            Loading...
+                        </td>
+
+
+                        <td id="profit-RELIANCE">
+                            -
+                        </td>
+
+
+                        <td id="return-RELIANCE">
+                            -
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="btn"
+                                onclick="openStock('RELIANCE')">
+
+                                View
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- TCS -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="portfolio-stock">
+
+                                <span class="stock-badge">
+                                    T
+                                </span>
+
+                                <div>
+
+                                    <div class="stock-name">
+                                        TCS
+                                    </div>
+
+                                    <div class="stock-sub">
+                                        TCS · NSE
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            8
+                        </td>
+
+
+                        <td>
+                            ₹28,000
+                        </td>
+
+
+                        <td id="value-TCS">
+                            Loading...
+                        </td>
+
+
+                        <td id="profit-TCS">
+                            -
+                        </td>
+
+
+                        <td id="return-TCS">
+                            -
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="btn"
+                                onclick="openStock('TCS')">
+
+                                View
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- INFY -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="portfolio-stock">
+
+                                <span class="stock-badge">
+                                    I
+                                </span>
+
+                                <div>
+
+                                    <div class="stock-name">
+                                        INFY
+                                    </div>
+
+                                    <div class="stock-sub">
+                                        INFY · NSE
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            15
+                        </td>
+
+
+                        <td>
+                            ₹21,000
+                        </td>
+
+
+                        <td id="value-INFY">
+                            Loading...
+                        </td>
+
+
+                        <td id="profit-INFY">
+                            -
+                        </td>
+
+
+                        <td id="return-INFY">
+                            -
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="btn"
+                                onclick="openStock('INFY')">
+
+                                View
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- HDFCBANK -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="portfolio-stock">
+
+                                <span class="stock-badge">
+                                    H
+                                </span>
+
+                                <div>
+
+                                    <div class="stock-name">
+                                        HDFCBANK
+                                    </div>
+
+                                    <div class="stock-sub">
+                                        HDFCBANK · NSE
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            12
+                        </td>
+
+
+                        <td>
+                            ₹23,000
+                        </td>
+
+
+                        <td id="value-HDFCBANK">
+                            Loading...
+                        </td>
+
+
+                        <td id="profit-HDFCBANK">
+                            -
+                        </td>
+
+
+                        <td id="return-HDFCBANK">
+                            -
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="btn"
+                                onclick="openStock('HDFCBANK')">
+
+                                View
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+
+        <!-- =====================================================
+             BOTTOM INSIGHTS
+        ====================================================== -->
+
+        <div class="grid-3">
+
+
+            <!-- BEST PERFORMER -->
+
+            <div class="card panel">
+
+                <div class="panel-title">
+                    Best Performer
+                </div>
+
+                <div class="panel-subtitle">
+                    Highest return in portfolio
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+
+                        <span id="bestStockName">
+                            Loading...
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="positive"
+                        id="bestStockReturn">
+
+                        -
+
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Current Value
+                    </div>
+
+                    <div id="bestStockValue">
+                        -
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- PORTFOLIO HEALTH -->
+
+            <div class="card panel">
+
+
+                <div class="panel-title">
+                    Portfolio Health
+                </div>
+
+                <div class="panel-subtitle">
+                    Overall portfolio status
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Profitability
+                    </div>
+
+                    <div
+                        class="positive"
+                        id="healthProfit">
+
+                        Calculating...
+
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Diversification
+                    </div>
+
+                    <div class="positive">
+                        Good
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Data Source
+                    </div>
+
+                    <div class="positive">
+                        yfinance
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- AI INSIGHT -->
+
+            <div class="card panel">
+
+
+                <div class="panel-title">
+                    MarketMentor AI
+                </div>
+
+                <div class="panel-subtitle">
+                    Portfolio observation
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Portfolio Return
+                    </div>
+
+                    <div
+                        class="positive"
+                        id="aiReturn">
+
+                        -
+
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Top Holding
+                    </div>
+
+                    <div id="aiHolding">
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Data Source
+                    </div>
+
+                    <div class="positive">
+                        yfinance
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <div style="
+            text-align:center;
+            color:#8b93a3;
+            font-size:10px;
+            padding:20px 0 5px;
+        ">
+
+            MarketMentor is an educational project.
+            Market data is provided using yfinance.
+
+        </div>
+
+
+    </main>
 
 </div>
 
@@ -608,156 +1110,632 @@ td {
 <script>
 
 
-/* ALLOCATION CHART */
+/* =========================================================
+   PORTFOLIO HOLDINGS
+========================================================= */
 
-new Chart(
-
-    document.getElementById("allocationChart"),
+const portfolio = [
 
     {
+        symbol: "RELIANCE",
+        quantity: 10,
+        invested: 28000
+    },
 
-        type: "doughnut",
+    {
+        symbol: "TCS",
+        quantity: 8,
+        invested: 28000
+    },
 
-        data: {
+    {
+        symbol: "INFY",
+        quantity: 15,
+        invested: 21000
+    },
 
-            labels: [
-                "RELIANCE",
-                "TCS",
-                "INFY",
-                "HDFCBANK"
-            ],
+    {
+        symbol: "HDFCBANK",
+        quantity: 12,
+        invested: 23000
+    }
 
-            datasets: [{
+];
 
-                data: [
-                    28,
-                    28,
-                    21,
-                    23
-                ]
 
-            }]
+let stockData = [];
 
-        },
+let performanceChart = null;
 
-        options: {
+let allocationChart = null;
 
-            responsive: true,
 
-            maintainAspectRatio: false,
+/* =========================================================
+   FORMAT MONEY
+========================================================= */
 
-            plugins: {
+function formatMoney(value) {
 
-                legend: {
+    return "₹" +
+        Number(value).toLocaleString(
+            "en-IN",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        );
 
-                    labels: {
+}
 
-                        color: "#cbd5e1"
 
-                    }
+/* =========================================================
+   GET CURRENT STOCK DATA
+========================================================= */
 
-                }
+async function getStock(symbol) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/stock/" + symbol
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message
+            );
+
+        }
+
+
+        return data;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Error loading",
+            symbol,
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   GET HISTORICAL STOCK DATA
+========================================================= */
+
+async function getPortfolioHistory(symbol) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/portfolio-history/" +
+                symbol
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message
+            );
+
+        }
+
+
+        return data;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "History error:",
+            symbol,
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD PORTFOLIO
+========================================================= */
+
+async function loadPortfolio() {
+
+
+    document.getElementById(
+        "loading"
+    ).innerText =
+        "Fetching latest prices from yfinance...";
+
+
+    stockData = [];
+
+
+    let totalInvestment = 0;
+
+    let currentValue = 0;
+
+    let bestStock = null;
+
+
+    /* =====================================================
+       FETCH CURRENT STOCK DATA
+    ===================================================== */
+
+    for (const holding of portfolio) {
+
+
+        const data =
+            await getStock(
+                holding.symbol
+            );
+
+
+        if (!data) {
+
+            continue;
+
+        }
+
+
+        const currentPrice =
+            Number(data.price);
+
+
+        const invested =
+            Number(holding.invested);
+
+
+        const quantity =
+            Number(holding.quantity);
+
+
+        const value =
+            currentPrice * quantity;
+
+
+        const profit =
+            value - invested;
+
+
+        const returnPercent =
+            (profit / invested) * 100;
+
+
+        const result = {
+
+            symbol:
+                holding.symbol,
+
+            quantity:
+                quantity,
+
+            invested:
+                invested,
+
+            price:
+                currentPrice,
+
+            value:
+                value,
+
+            profit:
+                profit,
+
+            returnPercent:
+                returnPercent
+
+        };
+
+
+        stockData.push(result);
+
+
+        totalInvestment +=
+            invested;
+
+
+        currentValue +=
+            value;
+
+
+        /* =================================================
+           UPDATE TABLE
+        ================================================= */
+
+        const valueElement =
+            document.getElementById(
+                "value-" +
+                holding.symbol
+            );
+
+
+        const profitElement =
+            document.getElementById(
+                "profit-" +
+                holding.symbol
+            );
+
+
+        const returnElement =
+            document.getElementById(
+                "return-" +
+                holding.symbol
+            );
+
+
+        if (valueElement) {
+
+            valueElement.innerText =
+                formatMoney(value);
+
+        }
+
+
+        if (profitElement) {
+
+            profitElement.innerText =
+                (profit >= 0 ? "+" : "") +
+                formatMoney(profit);
+
+        }
+
+
+        if (returnElement) {
+
+            returnElement.innerText =
+                (returnPercent >= 0 ? "+" : "") +
+                returnPercent.toFixed(2) +
+                "%";
+
+        }
+
+
+        /* =================================================
+           COLOR PROFIT
+        ================================================= */
+
+        if (profitElement && returnElement) {
+
+
+            if (profit >= 0) {
+
+                profitElement.className =
+                    "positive";
+
+                returnElement.className =
+                    "positive";
+
+            }
+
+            else {
+
+                profitElement.className =
+                    "negative";
+
+                returnElement.className =
+                    "negative";
 
             }
 
         }
 
+
+        /* =================================================
+           FIND BEST STOCK
+        ================================================= */
+
+        if (
+            bestStock === null ||
+            returnPercent >
+            bestStock.returnPercent
+        ) {
+
+            bestStock =
+                result;
+
+        }
+
     }
 
-);
+
+    /* =====================================================
+       CALCULATE PORTFOLIO
+    ===================================================== */
+
+    const totalProfit =
+        currentValue -
+        totalInvestment;
 
 
-/* PERFORMANCE CHART */
+    const totalReturn =
+        totalInvestment > 0
+            ? (totalProfit / totalInvestment) * 100
+            : 0;
 
-new Chart(
 
-    document.getElementById("performanceChart"),
+    /* =====================================================
+       UPDATE KPI
+    ===================================================== */
 
-    {
+    document.getElementById(
+        "totalInvestment"
+    ).innerText =
+        formatMoney(totalInvestment);
 
-        type: "line",
 
-        data: {
+    document.getElementById(
+        "currentValue"
+    ).innerText =
+        formatMoney(currentValue);
 
-            labels: [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun"
-            ],
 
-            datasets: [{
+    document.getElementById(
+        "totalProfit"
+    ).innerText =
+        (totalProfit >= 0 ? "+" : "") +
+        formatMoney(totalProfit);
 
-                label: "Portfolio Value",
 
-                data: [
-                    85000,
-                    90000,
-                    94000,
-                    98000,
-                    106000,
-                    112450
-                ],
+    document.getElementById(
+        "returnPercent"
+    ).innerText =
+        (totalReturn >= 0 ? "+" : "") +
+        totalReturn.toFixed(2) +
+        "%";
 
-                tension: 0.4,
 
-                fill: true
+    /* =====================================================
+       COLOR TOTAL PROFIT
+    ===================================================== */
 
-            }]
+    const totalProfitElement =
+        document.getElementById(
+            "totalProfit"
+        );
 
-        },
 
-        options: {
+    const returnPercentElement =
+        document.getElementById(
+            "returnPercent"
+        );
 
-            responsive: true,
 
-            maintainAspectRatio: false,
+    if (totalProfit >= 0) {
 
-            plugins: {
+        totalProfitElement.className =
+            "kpi-value positive";
 
-                legend: {
+        returnPercentElement.className =
+            "kpi-change positive";
 
-                    labels: {
+    }
 
-                        color: "#cbd5e1"
+    else {
 
-                    }
+        totalProfitElement.className =
+            "kpi-value negative";
 
-                }
+        returnPercentElement.className =
+            "kpi-change negative";
 
-            },
+    }
 
-            scales: {
 
-                x: {
+    /* =====================================================
+       BEST PERFORMER
+    ===================================================== */
 
-                    ticks: {
+    if (bestStock) {
 
-                        color: "#64748b"
 
-                    },
+        document.getElementById(
+            "bestPerformer"
+        ).innerText =
+            bestStock.symbol;
 
-                    grid: {
 
-                        color: "#1f2937"
+        document.getElementById(
+            "bestReturn"
+        ).innerText =
+            (bestStock.returnPercent >= 0
+                ? "+"
+                : "") +
+            bestStock.returnPercent.toFixed(2) +
+            "%";
 
-                    }
+
+        document.getElementById(
+            "bestStockName"
+        ).innerText =
+            bestStock.symbol;
+
+
+        document.getElementById(
+            "bestStockReturn"
+        ).innerText =
+            (bestStock.returnPercent >= 0
+                ? "+"
+                : "") +
+            bestStock.returnPercent.toFixed(2) +
+            "%";
+
+
+        document.getElementById(
+            "bestStockValue"
+        ).innerText =
+            formatMoney(
+                bestStock.value
+            );
+
+
+        document.getElementById(
+            "aiHolding"
+        ).innerText =
+            bestStock.symbol;
+
+    }
+
+
+    /* =====================================================
+       PORTFOLIO HEALTH
+    ===================================================== */
+
+    document.getElementById(
+        "healthProfit"
+    ).innerText =
+        totalProfit >= 0
+            ? "Profitable"
+            : "Needs Attention";
+
+
+    document.getElementById(
+        "aiReturn"
+    ).innerText =
+        (totalReturn >= 0 ? "+" : "") +
+        totalReturn.toFixed(2) +
+        "%";
+
+
+    /* =====================================================
+       CREATE CHARTS
+    ===================================================== */
+
+    await createCharts();
+
+
+    document.getElementById(
+        "loading"
+    ).innerText =
+        "✓ Portfolio updated using latest yfinance prices";
+
+}
+
+
+/* =========================================================
+   CREATE CHARTS
+========================================================= */
+
+async function createCharts() {
+
+
+    /* =====================================================
+       DESTROY OLD CHARTS
+    ===================================================== */
+
+    if (performanceChart) {
+
+        performanceChart.destroy();
+
+    }
+
+
+    if (allocationChart) {
+
+        allocationChart.destroy();
+
+    }
+
+
+    /* =====================================================
+       ALLOCATION CHART
+    ===================================================== */
+
+    const allocationLabels =
+        stockData.map(
+            stock => stock.symbol
+        );
+
+
+    const allocationValues =
+        stockData.map(
+            stock => stock.value
+        );
+
+
+    allocationChart =
+        new Chart(
+
+            document.getElementById(
+                "allocationChart"
+            ),
+
+            {
+
+                type: "doughnut",
+
+                data: {
+
+                    labels:
+                        allocationLabels,
+
+                    datasets: [
+
+                        {
+
+                            data:
+                                allocationValues,
+
+                            borderWidth:
+                                0
+
+                        }
+
+                    ]
 
                 },
 
-                y: {
+                options: {
 
-                    ticks: {
+                    responsive: true,
 
-                        color: "#64748b"
+                    maintainAspectRatio:
+                        false,
 
-                    },
+                    plugins: {
 
-                    grid: {
+                        legend: {
 
-                        color: "#1f2937"
+                            position:
+                                "bottom",
+
+                            labels: {
+
+                                font: {
+
+                                    size: 10
+
+                                }
+
+                            }
+
+                        }
 
                     }
 
@@ -765,11 +1743,489 @@ new Chart(
 
             }
 
+        );
+
+
+    /* =====================================================
+       FETCH HISTORICAL DATA
+    ===================================================== */
+
+    try {
+
+
+        const historyResults =
+            await Promise.all(
+
+                portfolio.map(
+                    holding =>
+                        getPortfolioHistory(
+                            holding.symbol
+                        )
+                )
+
+            );
+
+
+        /* =================================================
+           CHECK DATA
+        ================================================= */
+
+        const validHistories =
+            historyResults.filter(
+                history =>
+                    history !== null &&
+                    history.history &&
+                    history.history.length > 0
+            );
+
+
+        if (
+            validHistories.length === 0
+        ) {
+
+            console.log(
+                "No historical data available"
+            );
+
+            return;
+
+        }
+
+
+        /* =================================================
+           CREATE DATE SET
+        ================================================= */
+
+        const dateSet =
+            new Set();
+
+
+        historyResults.forEach(
+            history => {
+
+                if (!history) {
+                    return;
+                }
+
+
+                history.history.forEach(
+                    item => {
+
+                        dateSet.add(
+                            item.date
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        const dates =
+            Array.from(dateSet).sort();
+
+
+        /* =================================================
+           CREATE PRICE MAPS
+        ================================================= */
+
+        const priceMaps = {};
+
+
+        historyResults.forEach(
+            history => {
+
+                if (!history) {
+                    return;
+                }
+
+
+                const map = {};
+
+
+                history.history.forEach(
+                    item => {
+
+                        map[item.date] =
+                            Number(
+                                item.price
+                            );
+
+                    }
+                );
+
+
+                priceMaps[
+                    history.symbol
+                ] = map;
+
+            }
+        );
+
+
+        /* =================================================
+           CALCULATE PORTFOLIO HISTORY
+        ================================================= */
+
+        const portfolioValues = [];
+
+
+        let lastPrices = {};
+
+
+        dates.forEach(
+            date => {
+
+
+                let totalValue = 0;
+
+
+                portfolio.forEach(
+                    holding => {
+
+
+                        const symbol =
+                            holding.symbol;
+
+
+                        const quantity =
+                            Number(
+                                holding.quantity
+                            );
+
+
+                        const priceMap =
+                            priceMaps[
+                                symbol
+                            ];
+
+
+                        if (
+                            priceMap &&
+                            priceMap[date] !==
+                            undefined
+                        ) {
+
+                            lastPrices[
+                                symbol
+                            ] =
+                                priceMap[date];
+
+                        }
+
+
+                        const price =
+                            lastPrices[
+                                symbol
+                            ];
+
+
+                        if (
+                            price !==
+                            undefined
+                        ) {
+
+                            totalValue +=
+                                price *
+                                quantity;
+
+                        }
+
+                    }
+                );
+
+
+                portfolioValues.push(
+                    totalValue
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           FORMAT DATES
+        ================================================= */
+
+        const chartLabels =
+            dates.map(
+                date => {
+
+                    const d =
+                        new Date(
+                            date
+                        );
+
+
+                    return d.toLocaleDateString(
+                        "en-IN",
+                        {
+
+                            day: "2-digit",
+
+                            month: "short"
+
+                        }
+                    );
+
+                }
+            );
+
+
+        /* =================================================
+           CREATE PERFORMANCE CHART
+        ================================================= */
+
+        performanceChart =
+            new Chart(
+
+                document.getElementById(
+                    "performanceChart"
+                ),
+
+                {
+
+                    type: "line",
+
+                    data: {
+
+                        labels:
+                            chartLabels,
+
+                        datasets: [
+
+                            {
+
+                                label:
+                                    "Portfolio Value",
+
+                                data:
+                                    portfolioValues,
+
+                                tension:
+                                    0.4,
+
+                                fill:
+                                    true,
+
+                                borderWidth:
+                                    3,
+
+                                pointRadius:
+                                    0
+
+                            }
+
+                        ]
+
+                    },
+
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio:
+                            false,
+
+
+                        interaction: {
+
+                            intersect:
+                                false,
+
+                            mode:
+                                "index"
+
+                        },
+
+
+                        plugins: {
+
+                            legend: {
+
+                                display:
+                                    false
+
+                            },
+
+
+                            tooltip: {
+
+                                callbacks: {
+
+                                    label:
+                                        function(context) {
+
+                                            return (
+                                                " Portfolio Value: " +
+                                                formatMoney(
+                                                    context.raw
+                                                )
+                                            );
+
+                                        }
+
+                                }
+
+                            }
+
+                        },
+
+
+                        scales: {
+
+                            x: {
+
+                                grid: {
+
+                                    display:
+                                        false
+
+                                },
+
+                                ticks: {
+
+                                    maxTicksLimit:
+                                        8
+
+                                }
+
+                            },
+
+
+                            y: {
+
+                                beginAtZero:
+                                    false,
+
+                                ticks: {
+
+                                    callback:
+                                        function(value) {
+
+                                            return "₹" +
+                                                Number(
+                                                    value
+                                                ).toLocaleString(
+                                                    "en-IN"
+                                                );
+
+                                        }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            );
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "Portfolio chart error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SEARCH HOLDINGS
+========================================================= */
+
+function searchHoldings() {
+
+
+    const input =
+        document.getElementById(
+            "stockSearch"
+        );
+
+
+    const filter =
+        input.value.toUpperCase();
+
+
+    const table =
+        document.getElementById(
+            "holdingsTable"
+        );
+
+
+    const rows =
+        table
+            .getElementsByTagName(
+                "tbody"
+            )[0]
+            .getElementsByTagName(
+                "tr"
+            );
+
+
+    for (
+        let i = 0;
+        i < rows.length;
+        i++
+    ) {
+
+
+        const text =
+            rows[i]
+                .innerText
+                .toUpperCase();
+
+
+        if (
+            text.includes(filter)
+        ) {
+
+            rows[i].style.display =
+                "";
+
+        }
+
+        else {
+
+            rows[i].style.display =
+                "none";
+
         }
 
     }
 
-);
+}
+
+
+/* =========================================================
+   VIEW STOCK
+========================================================= */
+
+function openStock(symbol) {
+
+    window.location.href =
+        "compare.html";
+
+}
+
+
+/* =========================================================
+   START APPLICATION
+========================================================= */
+
+loadPortfolio();
+
 
 </script>
 

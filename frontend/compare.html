@@ -3,322 +3,181 @@
 
 <head>
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MarketMentor | Compare Stocks</title>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: #0b1120;
-    color: #f8fafc;
-}
-
-/* NAVIGATION */
-
-nav {
-    height: 70px;
-    background: #111827;
-    border-bottom: 1px solid #1f2937;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 45px;
-
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.logo span {
-    color: #38bdf8;
-}
-
-.nav-links {
-    display: flex;
-    gap: 28px;
-}
-
-.nav-links a {
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.nav-links a:hover,
-.nav-links .active {
-    color: #38bdf8;
-}
-
-
-/* CONTAINER */
-
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 40px 30px 60px;
-}
-
-
-/* HEADER */
-
-.page-header {
-    margin-bottom: 30px;
-}
-
-.page-header h1 {
-    font-size: 32px;
-    margin-bottom: 8px;
-}
-
-.page-header p {
-    color: #94a3b8;
-}
-
-
-/* SELECTORS */
-
-.selector-box {
-    background: #111827;
-    border: 1px solid #1f2937;
-    border-radius: 12px;
-    padding: 22px;
-
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-
-    margin-bottom: 25px;
-}
-
-select {
-    background: #0b1120;
-    color: white;
-
-    border: 1px solid #334155;
-    border-radius: 7px;
-
-    padding: 11px;
-
-    min-width: 180px;
-}
-
-button {
-    background: #2563eb;
-    color: white;
-
-    border: none;
-    border-radius: 7px;
-
-    padding: 11px 20px;
-
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:hover {
-    background: #1d4ed8;
-}
-
-
-/* STOCK CARDS */
-
-.stock-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 18px;
-
-    margin-bottom: 25px;
-}
-
-.stock-card {
-
-    background: #111827;
-
-    border: 1px solid #1f2937;
-
-    border-radius: 12px;
-
-    padding: 22px;
-}
-
-.stock-card h2 {
-    font-size: 20px;
-    margin-bottom: 8px;
-}
-
-.price {
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 12px;
-}
-
-.bullish {
-    color: #22c55e;
-}
-
-.metric {
-    display: flex;
-    justify-content: space-between;
-
-    padding: 9px 0;
-
-    border-bottom: 1px solid #1f2937;
-
-    font-size: 13px;
-}
-
-.metric span:first-child {
-    color: #64748b;
-}
-
-
-/* RECOMMENDATION */
-
-.recommendation {
-
-    background: linear-gradient(
-        135deg,
-        #111827,
-        #172554
-    );
-
-    border: 1px solid #1e3a8a;
-
-    border-radius: 12px;
-
-    padding: 25px;
-
-    margin-bottom: 25px;
-}
-
-.recommendation h2 {
-    margin-bottom: 10px;
-}
-
-.recommendation p {
-    color: #94a3b8;
-    line-height: 1.6;
-}
-
-.recommendation strong {
-    color: #22c55e;
-}
-
-
-/* CHARTS */
-
-.chart-grid {
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
-
-}
-
-.chart-box {
-
-    background: #111827;
-
-    border: 1px solid #1f2937;
-
-    border-radius: 12px;
-
-    padding: 25px;
-
-}
-
-.chart-box h2 {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.chart-container {
-
-    height: 300px;
-
-}
-
-
-/* RESPONSIVE */
-
-@media(max-width: 950px) {
-
-    .stock-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-    }
-
-    .chart-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-}
-
-@media(max-width: 600px) {
-
-    nav {
-        padding: 0 20px;
-    }
-
-    .nav-links {
-        gap: 10px;
-    }
-
-    .nav-links a {
-        font-size: 11px;
-    }
-
-    .stock-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-    .selector-box {
-
-        flex-direction: column;
-
-    }
-
-    select,
-    button {
-
-        width: 100%;
-
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MarketMentor | Compare Stocks</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .compare-select-box {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .compare-select {
+            border: 1px solid #e0e4eb;
+            background: white;
+            color: #172033;
+            border-radius: 7px;
+            padding: 10px 12px;
+            font-size: 11px;
+            min-width: 150px;
+            outline: none;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 15px;
+        }
+
+        .compare-stock-card {
+            padding: 18px;
+        }
+
+        .compare-stock-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .compare-price {
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 8px;
+            margin-bottom: 12px;
+        }
+
+        .compare-metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid #edf0f4;
+            font-size: 11px;
+        }
+
+        .compare-metric span:first-child {
+            color: #7a8495;
+        }
+
+        .recommendation-box {
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .recommendation-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .recommendation-text {
+            color: #697386;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .chart-height {
+            height: 280px;
+            margin-top: 15px;
+        }
+
+        .live-status {
+            font-size: 10px;
+            margin-top: 5px;
+            color: #16a34a;
+        }
+
+        .prediction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 11px;
+        }
+
+        .prediction-table th {
+            text-align: left;
+            padding: 11px;
+            background: #f7f9fc;
+            color: #697386;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+        .prediction-table td {
+            padding: 12px 11px;
+            border-bottom: 1px solid #edf0f4;
+            white-space: nowrap;
+        }
+
+        .prediction-table td:not(:first-child) {
+            text-align: right;
+        }
+
+        .prediction-table td.trend-cell {
+            text-align: center;
+        }
+
+        .trend-bullish {
+            color: #16a34a;
+            font-weight: 700;
+        }
+
+        .trend-bearish {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .confidence-box {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: #eef4ff;
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        .ai-loading {
+            color: #2563eb;
+            text-align: center;
+            padding: 20px !important;
+        }
+
+        @media(max-width:1100px) {
+
+            .compare-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media(max-width:700px) {
+
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .compare-select-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .compare-select {
+                width: 100%;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -326,379 +185,910 @@ button:hover {
 <body>
 
 
-<!-- NAVIGATION -->
-
-<nav>
-
-    <div class="logo">
-        Market<span>Mentor</span>
-    </div>
-
-    <div class="nav-links">
-
-        <a href="index.html">
-            Dashboard
-        </a>
-
-        <a href="portfolio.html">
-            Portfolio
-        </a>
-
-        <a href="compare.html" class="active">
-            Compare
-        </a>
-
-        <a href="prediction.html">
-            AI Prediction
-        </a>
-
-    </div>
-
-</nav>
+<div class="app">
 
 
-<!-- MAIN -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-<div class="container">
-
-
-    <div class="page-header">
-
-        <h1>
-            Compare Stocks
-        </h1>
-
-        <p>
-            Compare up to four stocks and identify the strongest opportunity
-        </p>
-
-    </div>
+    <aside class="sidebar">
 
 
-    <!-- SELECT STOCKS -->
+        <div class="brand">
 
-    <div class="selector-box">
-
-        <select id="stock1">
-
-            <option value="RELIANCE">
-                RELIANCE
-            </option>
-
-            <option value="TCS">
-                TCS
-            </option>
-
-            <option value="INFY">
-                INFY
-            </option>
-
-            <option value="HDFCBANK">
-                HDFCBANK
-            </option>
-
-        </select>
-
-
-        <select id="stock2">
-
-            <option value="TCS">
-                TCS
-            </option>
-
-            <option value="RELIANCE">
-                RELIANCE
-            </option>
-
-            <option value="INFY">
-                INFY
-            </option>
-
-            <option value="HDFCBANK">
-                HDFCBANK
-            </option>
-
-        </select>
-
-
-        <select id="stock3">
-
-            <option value="INFY">
-                INFY
-            </option>
-
-            <option value="RELIANCE">
-                RELIANCE
-            </option>
-
-            <option value="TCS">
-                TCS
-            </option>
-
-            <option value="HDFCBANK">
-                HDFCBANK
-            </option>
-
-        </select>
-
-
-        <select id="stock4">
-
-            <option value="HDFCBANK">
-                HDFCBANK
-            </option>
-
-            <option value="RELIANCE">
-                RELIANCE
-            </option>
-
-            <option value="TCS">
-                TCS
-            </option>
-
-            <option value="INFY">
-                INFY
-            </option>
-
-        </select>
-
-
-        <button onclick="compareStocks()">
-
-            Compare
-
-        </button>
-
-    </div>
-
-
-    <!-- STOCK CARDS -->
-
-    <div class="stock-grid">
-
-
-        <!-- RELIANCE -->
-
-        <div class="stock-card">
-
-            <h2 id="name1">
-                RELIANCE
-            </h2>
-
-            <div class="price">
-                ₹2,950
+            <div class="brand-logo">
+                M
             </div>
 
-            <div class="metric">
-                <span>Market Cap</span>
-                <span>₹19.9T</span>
-            </div>
+            <div>
 
-            <div class="metric">
-                <span>P/E Ratio</span>
-                <span>28.4</span>
-            </div>
+                <h2>MarketMentor</h2>
 
-            <div class="metric">
-                <span>Dividend Yield</span>
-                <span>0.35%</span>
-            </div>
-
-            <div class="metric">
-                <span>52W High</span>
-                <span>₹3,024</span>
-            </div>
-
-            <div class="metric">
-                <span>52W Low</span>
-                <span>₹2,220</span>
-            </div>
-
-        </div>
-
-
-        <!-- TCS -->
-
-        <div class="stock-card">
-
-            <h2 id="name2">
-                TCS
-            </h2>
-
-            <div class="price">
-                ₹3,650
-            </div>
-
-            <div class="metric">
-                <span>Market Cap</span>
-                <span>₹13.2T</span>
-            </div>
-
-            <div class="metric">
-                <span>P/E Ratio</span>
-                <span>27.8</span>
-            </div>
-
-            <div class="metric">
-                <span>Dividend Yield</span>
-                <span>1.25%</span>
-            </div>
-
-            <div class="metric">
-                <span>52W High</span>
-                <span>₹4,592</span>
-            </div>
-
-            <div class="metric">
-                <span>52W Low</span>
-                <span>₹3,050</span>
-            </div>
-
-        </div>
-
-
-        <!-- INFY -->
-
-        <div class="stock-card">
-
-            <h2 id="name3">
-                INFY
-            </h2>
-
-            <div class="price">
-                ₹1,500
-            </div>
-
-            <div class="metric">
-                <span>Market Cap</span>
-                <span>₹6.2T</span>
-            </div>
-
-            <div class="metric">
-                <span>P/E Ratio</span>
-                <span>24.6</span>
-            </div>
-
-            <div class="metric">
-                <span>Dividend Yield</span>
-                <span>2.75%</span>
-            </div>
-
-            <div class="metric">
-                <span>52W High</span>
-                <span>₹1,975</span>
-            </div>
-
-            <div class="metric">
-                <span>52W Low</span>
-                <span>₹1,307</span>
-            </div>
-
-        </div>
-
-
-        <!-- HDFC -->
-
-        <div class="stock-card">
-
-            <h2 id="name4">
-                HDFCBANK
-            </h2>
-
-            <div class="price">
-                ₹1,680
-            </div>
-
-            <div class="metric">
-                <span>Market Cap</span>
-                <span>₹12.8T</span>
-            </div>
-
-            <div class="metric">
-                <span>P/E Ratio</span>
-                <span>18.9</span>
-            </div>
-
-            <div class="metric">
-                <span>Dividend Yield</span>
-                <span>1.15%</span>
-            </div>
-
-            <div class="metric">
-                <span>52W High</span>
-                <span>₹1,880</span>
-            </div>
-
-            <div class="metric">
-                <span>52W Low</span>
-                <span>₹1,363</span>
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <!-- AI RECOMMENDATION -->
-
-    <div class="recommendation">
-
-        <h2>
-            🤖 AI Recommendation
-        </h2>
-
-        <p>
-
-            Based on the current demonstration metrics,
-            <strong>HDFCBANK</strong> shows an attractive
-            valuation with a relatively lower P/E ratio.
-
-            TCS and INFY provide strong dividend potential,
-            while RELIANCE shows strong market presence.
-
-        </p>
-
-    </div>
-
-
-    <!-- CHARTS -->
-
-    <div class="chart-grid">
-
-
-        <div class="chart-box">
-
-            <h2>
-                Price Comparison
-            </h2>
-
-            <div class="chart-container">
-
-                <canvas id="priceChart"></canvas>
+                <span>
+                    AI-Powered Stock Intelligence
+                </span>
 
             </div>
 
         </div>
 
 
-        <div class="chart-box">
+        <!-- NAVIGATION -->
 
-            <h2>
-                P/E Ratio Comparison
-            </h2>
+        <nav class="nav">
 
-            <div class="chart-container">
+            <a href="index.html">
 
-                <canvas id="peChart"></canvas>
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="#">
+
+                <span class="nav-icon">
+                    ☆
+                </span>
+
+                <span>
+                    Live Market
+                </span>
+
+            </a>
+
+
+            <a href="portfolio.html">
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                <span>
+                    Portfolio
+                </span>
+
+            </a>
+
+
+            <a href="compare.html"
+               class="active">
+
+                <span class="nav-icon">
+                    ◫
+                </span>
+
+                <span>
+                    Compare Stocks
+                </span>
+
+            </a>
+
+
+            <a href="prediction.html">
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                <span>
+                    AI Prediction
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- =====================================================
+             MARKET INDICES
+        ====================================================== -->
+
+        <div class="market-section">
+
+            <div class="market-title">
+                MARKET INDICES
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    NIFTY 50
+                </div>
+
+                <div class="index-value">
+                    24,636.00
+                </div>
+
+                <div class="index-change">
+                    +116.10 (0.47%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    SENSEX
+                </div>
+
+                <div class="index-value">
+                    81,067.71
+                </div>
+
+                <div class="index-change">
+                    +295.43 (0.37%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    BANK NIFTY
+                </div>
+
+                <div class="index-value">
+                    55,292.35
+                </div>
+
+                <div class="index-change">
+                    +210.55 (0.38%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    FIN NIFTY
+                </div>
+
+                <div class="index-value">
+                    24,599.50
+                </div>
+
+                <div class="index-change">
+                    +101.75 (0.42%)
+                </div>
 
             </div>
 
         </div>
 
 
-    </div>
+        <!-- PROFILE -->
 
+        <div class="profile">
+
+            <div class="profile-top">
+
+                <div class="avatar">
+                    AR
+                </div>
+
+                <div>
+
+                    <div class="profile-name">
+                        MarketMentor User
+                    </div>
+
+                    <div class="profile-plan">
+                        AI Analytics
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div>
+
+                <div class="page-title">
+                    Compare Stocks
+                </div>
+
+                <div class="page-subtitle">
+                    Compare stocks using live market data and AI predictions
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    class="btn"
+                    onclick="compareStocks()">
+
+                    ↻ Refresh
+
+                </button>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="resetComparison()">
+
+                    Reset
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SELECT STOCKS
+        ====================================================== -->
+
+        <div
+            class="card panel"
+            style="margin-bottom:15px;">
+
+            <div class="panel-title">
+                Select Stocks
+            </div>
+
+            <div class="panel-subtitle">
+                Choose up to four NSE stocks
+            </div>
+
+
+            <div
+                class="compare-select-box"
+                style="margin-top:15px;">
+
+
+                <select id="stock1"
+                        class="compare-select">
+
+                    <option value="RELIANCE">
+                        RELIANCE
+                    </option>
+
+                    <option value="TCS">
+                        TCS
+                    </option>
+
+                    <option value="INFY">
+                        INFY
+                    </option>
+
+                    <option value="HDFCBANK">
+                        HDFCBANK
+                    </option>
+
+                </select>
+
+
+                <select id="stock2"
+                        class="compare-select">
+
+                    <option value="TCS">
+                        TCS
+                    </option>
+
+                    <option value="RELIANCE">
+                        RELIANCE
+                    </option>
+
+                    <option value="INFY">
+                        INFY
+                    </option>
+
+                    <option value="HDFCBANK">
+                        HDFCBANK
+                    </option>
+
+                </select>
+
+
+                <select id="stock3"
+                        class="compare-select">
+
+                    <option value="INFY">
+                        INFY
+                    </option>
+
+                    <option value="RELIANCE">
+                        RELIANCE
+                    </option>
+
+                    <option value="TCS">
+                        TCS
+                    </option>
+
+                    <option value="HDFCBANK">
+                        HDFCBANK
+                    </option>
+
+                </select>
+
+
+                <select id="stock4"
+                        class="compare-select">
+
+                    <option value="HDFCBANK">
+                        HDFCBANK
+                    </option>
+
+                    <option value="RELIANCE">
+                        RELIANCE
+                    </option>
+
+                    <option value="TCS">
+                        TCS
+                    </option>
+
+                    <option value="INFY">
+                        INFY
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="compareStocks()">
+
+                    Compare Stocks
+
+                </button>
+
+            </div>
+
+
+            <div class="live-status">
+
+                ● Live data powered by yfinance
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             KPI CARDS
+        ====================================================== -->
+
+        <div class="kpi-grid">
+
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Best Overall
+                </div>
+
+                <div
+                    class="kpi-value"
+                    id="bestStock">
+
+                    Loading...
+
+                </div>
+
+                <div
+                    class="kpi-change"
+                    id="bestStockText">
+
+                    Calculating...
+
+                </div>
+
+                <div class="kpi-icon">
+                    ★
+                </div>
+
+            </div>
+
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Best Price
+                </div>
+
+                <div
+                    class="kpi-value"
+                    id="bestPrice">
+
+                    Loading...
+
+                </div>
+
+                <div
+                    class="kpi-change"
+                    id="bestPriceValue">
+
+                    Current price
+
+                </div>
+
+                <div class="kpi-icon">
+                    ₹
+                </div>
+
+            </div>
+
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Lowest P/E
+                </div>
+
+                <div
+                    class="kpi-value"
+                    id="lowestPE">
+
+                    Loading...
+
+                </div>
+
+                <div
+                    class="kpi-change"
+                    id="lowestPEValue">
+
+                    Calculating...
+
+                </div>
+
+                <div class="kpi-icon">
+                    ↓
+                </div>
+
+            </div>
+
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Stocks Compared
+                </div>
+
+                <div
+                    class="kpi-value"
+                    id="stocksCompared">
+
+                    4
+
+                </div>
+
+                <div class="kpi-change">
+                    NSE Stocks
+                </div>
+
+                <div class="kpi-icon">
+                    ◫
+                </div>
+
+            </div>
+
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Data Source
+                </div>
+
+                <div class="kpi-value">
+                    LIVE
+                </div>
+
+                <div class="kpi-change">
+                    yfinance
+                </div>
+
+                <div class="kpi-icon">
+                    AI
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             STOCK CARDS
+        ====================================================== -->
+
+        <div
+            class="compare-grid"
+            style="margin-top:15px;">
+
+
+            <!-- STOCK 1 -->
+
+            <div class="card compare-stock-card">
+
+                <div
+                    class="compare-stock-title"
+                    id="name1">
+
+                    RELIANCE
+
+                </div>
+
+                <div
+                    class="compare-price"
+                    id="price1">
+
+                    Loading...
+
+                </div>
+
+                <div class="compare-metric">
+                    <span>Market Cap</span>
+                    <span id="marketCap1">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>P/E Ratio</span>
+                    <span id="pe1">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>Dividend Yield</span>
+                    <span id="dividend1">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>52W High</span>
+                    <span id="high52_1">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>52W Low</span>
+                    <span id="low52_1">Loading...</span>
+                </div>
+
+            </div>
+
+
+            <!-- STOCK 2 -->
+
+            <div class="card compare-stock-card">
+
+                <div
+                    class="compare-stock-title"
+                    id="name2">
+
+                    TCS
+
+                </div>
+
+                <div
+                    class="compare-price"
+                    id="price2">
+
+                    Loading...
+
+                </div>
+
+                <div class="compare-metric">
+                    <span>Market Cap</span>
+                    <span id="marketCap2">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>P/E Ratio</span>
+                    <span id="pe2">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>Dividend Yield</span>
+                    <span id="dividend2">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>52W High</span>
+                    <span id="high52_2">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>52W Low</span>
+                    <span id="low52_2">Loading...</span>
+                </div>
+
+            </div>
+
+
+            <!-- STOCK 3 -->
+
+            <div class="card compare-stock-card">
+
+                <div
+                    class="compare-stock-title"
+                    id="name3">
+
+                    INFY
+
+                </div>
+
+                <div
+                    class="compare-price"
+                    id="price3">
+
+                    Loading...
+
+                </div>
+
+                <div class="compare-metric">
+                    <span>Market Cap</span>
+                    <span id="marketCap3">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>P/E Ratio</span>
+                    <span id="pe3">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>Dividend Yield</span>
+                    <span id="dividend3">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>52W High</span>
+                    <span id="high52_3">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>52W Low</span>
+                    <span id="low52_3">Loading...</span>
+                </div>
+
+            </div>
+
+
+            <!-- STOCK 4 -->
+
+            <div class="card compare-stock-card">
+
+                <div
+                    class="compare-stock-title"
+                    id="name4">
+
+                    HDFCBANK
+
+                </div>
+
+                <div
+                    class="compare-price"
+                    id="price4">
+
+                    Loading...
+
+                </div>
+
+                <div class="compare-metric">
+                    <span>Market Cap</span>
+                    <span id="marketCap4">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>P/E Ratio</span>
+                    <span id="pe4">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>Dividend Yield</span>
+                    <span id="dividend4">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>52W High</span>
+                    <span id="high52_4">Loading...</span>
+                </div>
+
+                <div class="compare-metric">
+                    <span>52W Low</span>
+                    <span id="low52_4">Loading...</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             AI PREDICTION
+        ====================================================== -->
+
+        <div class="card panel"
+             style="margin-bottom:15px;">
+
+            <div class="panel-title">
+                🤖 AI Prediction Outlook
+            </div>
+
+            <div class="panel-subtitle">
+                Machine-learning prediction based on historical market data
+            </div>
+
+
+            <div style="overflow-x:auto;">
+
+                <table class="prediction-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                STOCK
+                            </th>
+
+                            <th>
+                                CURRENT
+                            </th>
+
+                            <th>
+                                TOMORROW
+                            </th>
+
+                            <th>
+                                1 WEEK
+                            </th>
+
+                            <th style="text-align:center;">
+                                TREND
+                            </th>
+
+                            <th style="text-align:center;">
+                                CONFIDENCE
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="predictionBody">
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="ai-loading">
+
+                                Loading AI predictions...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             AI RECOMMENDATION
+        ====================================================== -->
+
+        <div class="card recommendation-box">
+
+            <div class="recommendation-title">
+
+                🤖 MarketMentor AI Recommendation
+
+            </div>
+
+
+            <div
+                class="recommendation-text"
+                id="recommendation">
+
+                Loading live market data...
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             CHARTS
+        ====================================================== -->
+
+        <div class="grid-2">
+
+
+            <!-- PRICE -->
+
+            <div class="card panel">
+
+                <div class="panel-title">
+                    Price Comparison
+                </div>
+
+                <div class="panel-subtitle">
+                    Current live stock prices
+                </div>
+
+
+                <div class="chart-height">
+
+                    <canvas id="priceChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+            <!-- PE -->
+
+            <div class="card panel">
+
+                <div class="panel-title">
+                    P/E Ratio Comparison
+                </div>
+
+                <div class="panel-subtitle">
+                    Current valuation comparison
+                </div>
+
+
+                <div class="chart-height">
+
+                    <canvas id="peChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div style="
+            text-align:center;
+            color:#8b93a3;
+            font-size:10px;
+            padding:20px 0 5px;
+        ">
+
+            MarketMentor is an educational project.
+            Market data and AI predictions are for demonstration purposes.
+
+        </div>
+
+
+    </main>
 
 </div>
 
@@ -706,152 +1096,725 @@ button:hover {
 <script>
 
 
-function compareStocks() {
+// ======================================================
+// CONFIGURATION
+// ======================================================
 
-    const stock1 =
-        document.getElementById("stock1").value;
-
-    const stock2 =
-        document.getElementById("stock2").value;
-
-    const stock3 =
-        document.getElementById("stock3").value;
-
-    const stock4 =
-        document.getElementById("stock4").value;
+const API = "";
 
 
-    document.getElementById("name1").innerText =
-        stock1;
+// ======================================================
+// SELECTED STOCKS
+// ======================================================
 
-    document.getElementById("name2").innerText =
-        stock2;
-
-    document.getElementById("name3").innerText =
-        stock3;
-
-    document.getElementById("name4").innerText =
-        stock4;
-
-}
-
-
-const priceData = {
-
-    RELIANCE: 2950,
-
-    TCS: 3650,
-
-    INFY: 1500,
-
-    HDFCBANK: 1680
-
-};
-
-
-const peData = {
-
-    RELIANCE: 28.4,
-
-    TCS: 27.8,
-
-    INFY: 24.6,
-
-    HDFCBANK: 18.9
-
-};
-
-
-const selectedStocks = [
+let selectedStocks = [
 
     "RELIANCE",
-
     "TCS",
-
     "INFY",
-
     "HDFCBANK"
 
 ];
 
 
-new Chart(
+// ======================================================
+// STOCK DATA
+// ======================================================
 
-    document.getElementById("priceChart"),
+let stockData = {};
 
-    {
 
-        type: "bar",
+// ======================================================
+// AI PREDICTION DATA
+// ======================================================
 
-        data: {
+let predictionData = {};
 
-            labels: selectedStocks,
 
-            datasets: [{
+// ======================================================
+// CHART VARIABLES
+// ======================================================
 
-                label: "Price (₹)",
+let priceChart = null;
 
-                data: selectedStocks.map(
-                    stock => priceData[stock]
-                )
+let peChart = null;
 
-            }]
 
-        },
+// ======================================================
+// LOAD ONE STOCK
+// ======================================================
 
-        options: {
+async function loadStock(symbol) {
 
-            responsive: true,
+    try {
 
-            maintainAspectRatio: false,
+        const response =
+            await fetch(
+                `${API}/api/stock/${symbol}`
+            );
 
-            plugins: {
 
-                legend: {
+        if (!response.ok) {
 
-                    labels: {
+            console.log(
+                "Stock API failed:",
+                symbol
+            );
 
-                        color: "#cbd5e1"
+            return null;
 
-                    }
+        }
 
-                }
 
-            },
+        const data =
+            await response.json();
 
-            scales: {
 
-                x: {
+        if (!data.success) {
 
-                    ticks: {
+            console.log(
+                "Stock failed:",
+                symbol
+            );
 
-                        color: "#94a3b8"
+            return null;
 
-                    },
+        }
 
-                    grid: {
 
-                        color: "#1f2937"
+        return data;
 
-                    }
+    }
 
-                },
+    catch (error) {
 
-                y: {
+        console.error(
+            "Stock connection error:",
+            error
+        );
 
-                    ticks: {
+        return null;
 
-                        color: "#94a3b8"
+    }
 
-                    },
+}
 
-                    grid: {
 
-                        color: "#1f2937"
+// ======================================================
+// LOAD AI PREDICTION
+// ======================================================
 
-                    }
+async function loadPrediction(symbol) {
 
-                }
+    try {
+
+        const response =
+            await fetch(
+                `${API}/api/prediction/${symbol}`
+            );
+
+
+        if (!response.ok) {
+
+            console.log(
+                "Prediction API failed:",
+                symbol
+            );
+
+            return null;
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            console.log(
+                "Prediction failed:",
+                symbol
+            );
+
+            return null;
+
+        }
+
+
+        return data;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Prediction connection error:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+// ======================================================
+// LOAD ALL STOCKS
+// ======================================================
+
+async function loadAllStocks() {
+
+    stockData = {};
+
+    predictionData = {};
+
+
+    for (
+        const symbol
+        of selectedStocks
+    ) {
+
+
+        // ----------------------------------------------
+        // LIVE YFINANCE DATA
+        // ----------------------------------------------
+
+        const data =
+            await loadStock(symbol);
+
+
+        if (data) {
+
+            stockData[symbol] =
+                data;
+
+        }
+
+
+        // ----------------------------------------------
+        // ML PREDICTION
+        // ----------------------------------------------
+
+        const prediction =
+            await loadPrediction(symbol);
+
+
+        if (prediction) {
+
+            predictionData[symbol] =
+                prediction;
+
+        }
+
+    }
+
+
+    updateCards();
+
+    updatePredictions();
+
+    updateRecommendation();
+
+    createCharts();
+
+}
+
+
+// ======================================================
+// FORMAT NUMBER
+// ======================================================
+
+function formatNumber(value) {
+
+    if (
+        value === null ||
+        value === undefined ||
+        isNaN(value)
+    ) {
+
+        return "N/A";
+
+    }
+
+
+    return Number(value)
+        .toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: 2
+            }
+        );
+
+}
+
+
+// ======================================================
+// FORMAT MARKET CAP
+// ======================================================
+
+function formatMarketCap(value) {
+
+    if (!value) {
+
+        return "N/A";
+
+    }
+
+
+    if (
+        value >=
+        1000000000000
+    ) {
+
+        return "₹" +
+            (
+                value /
+                1000000000000
+            ).toFixed(2) +
+            "T";
+
+    }
+
+
+    if (
+        value >=
+        1000000000
+    ) {
+
+        return "₹" +
+            (
+                value /
+                1000000000
+            ).toFixed(2) +
+            "B";
+
+    }
+
+
+    if (
+        value >=
+        1000000
+    ) {
+
+        return "₹" +
+            (
+                value /
+                1000000
+            ).toFixed(2) +
+            "M";
+
+    }
+
+
+    return "₹" +
+        formatNumber(value);
+
+}
+
+
+// ======================================================
+// UPDATE STOCK CARDS
+// ======================================================
+
+function updateCards() {
+
+
+    for (
+        let i = 0;
+        i < 4;
+        i++
+    ) {
+
+
+        const stock =
+            selectedStocks[i];
+
+
+        const data =
+            stockData[stock];
+
+
+        if (!data) {
+
+            continue;
+
+        }
+
+
+        const number =
+            i + 1;
+
+
+        document.getElementById(
+            "name" + number
+        ).innerText =
+            stock;
+
+
+        document.getElementById(
+            "price" + number
+        ).innerText =
+            "₹" +
+            formatNumber(
+                data.price
+            );
+
+
+        document.getElementById(
+            "marketCap" + number
+        ).innerText =
+            formatMarketCap(
+                data.market_cap
+            );
+
+
+        document.getElementById(
+            "pe" + number
+        ).innerText =
+            data.pe !== null &&
+            data.pe !== undefined
+                ? formatNumber(data.pe)
+                : "N/A";
+
+
+        document.getElementById(
+            "dividend" + number
+        ).innerText =
+            data.dividend_yield !== null &&
+            data.dividend_yield !== undefined
+                ? formatNumber(
+                    data.dividend_yield
+                ) + "%"
+                : "N/A";
+
+
+        document.getElementById(
+            "high52_" + number
+        ).innerText =
+            data.fifty_two_high !== null &&
+            data.fifty_two_high !== undefined
+                ? "₹" +
+                  formatNumber(
+                      data.fifty_two_high
+                  )
+                : "N/A";
+
+
+        document.getElementById(
+            "low52_" + number
+        ).innerText =
+            data.fifty_two_low !== null &&
+            data.fifty_two_low !== undefined
+                ? "₹" +
+                  formatNumber(
+                      data.fifty_two_low
+                  )
+                : "N/A";
+
+    }
+
+}
+
+
+// ======================================================
+// UPDATE AI PREDICTION TABLE
+// ======================================================
+
+function updatePredictions() {
+
+
+    const body =
+        document.getElementById(
+            "predictionBody"
+        );
+
+
+    body.innerHTML = "";
+
+
+    let count = 0;
+
+
+    for (
+        const symbol
+        of selectedStocks
+    ) {
+
+
+        const prediction =
+            predictionData[symbol];
+
+
+        if (!prediction) {
+
+            continue;
+
+        }
+
+
+        count++;
+
+
+        const bullish =
+            prediction.trend ===
+            "Bullish";
+
+
+        const trendClass =
+            bullish
+                ? "trend-bullish"
+                : "trend-bearish";
+
+
+        const trendIcon =
+            bullish
+                ? "▲"
+                : "▼";
+
+
+        const row =
+            document.createElement(
+                "tr"
+            );
+
+
+        row.innerHTML = `
+
+            <td style="
+                font-weight:700;
+            ">
+
+                ${symbol}
+
+            </td>
+
+
+            <td>
+
+                ₹${formatNumber(
+                    prediction.current_price
+                )}
+
+            </td>
+
+
+            <td>
+
+                ₹${formatNumber(
+                    prediction.tomorrow
+                )}
+
+            </td>
+
+
+            <td>
+
+                ₹${formatNumber(
+                    prediction.week
+                )}
+
+            </td>
+
+
+            <td class="trend-cell">
+
+                <span class="${trendClass}">
+
+                    ${trendIcon}
+                    ${prediction.trend}
+
+                </span>
+
+            </td>
+
+
+            <td class="trend-cell">
+
+                <span class="confidence-box">
+
+                    ${prediction.confidence}%
+
+                </span>
+
+            </td>
+
+        `;
+
+
+        body.appendChild(
+            row
+        );
+
+    }
+
+
+    if (count === 0) {
+
+        body.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="6"
+                    class="ai-loading">
+
+                    AI prediction unavailable
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+// ======================================================
+// AI RECOMMENDATION
+// ======================================================
+
+function updateRecommendation() {
+
+
+    let bestStock = null;
+
+    let bestScore = -Infinity;
+
+
+    let lowestPEStock = null;
+
+    let lowestPE = Infinity;
+
+
+    let highestPriceStock = null;
+
+    let highestPrice = -Infinity;
+
+
+    for (
+        const symbol
+        of selectedStocks
+    ) {
+
+
+        const data =
+            stockData[symbol];
+
+
+        const prediction =
+            predictionData[symbol];
+
+
+        if (!data) {
+
+            continue;
+
+        }
+
+
+        // ----------------------------------------------
+        // LOWEST P/E
+        // ----------------------------------------------
+
+        if (
+            data.pe !== null &&
+            data.pe !== undefined &&
+            data.pe < lowestPE
+        ) {
+
+            lowestPE =
+                data.pe;
+
+            lowestPEStock =
+                symbol;
+
+        }
+
+
+        // ----------------------------------------------
+        // HIGHEST PRICE
+        // ----------------------------------------------
+
+        if (
+            data.price >
+            highestPrice
+        ) {
+
+            highestPrice =
+                data.price;
+
+            highestPriceStock =
+                symbol;
+
+        }
+
+
+        // ----------------------------------------------
+        // AI SCORE
+        // ----------------------------------------------
+
+        if (prediction) {
+
+
+            const predictedReturn =
+                (
+                    (
+                        prediction.week -
+                        prediction.current_price
+                    )
+                    /
+                    prediction.current_price
+                ) * 100;
+
+
+            let score =
+                predictedReturn;
+
+
+            score +=
+                prediction.confidence *
+                0.05;
+
+
+            if (
+                data.pe !== null &&
+                data.pe !== undefined
+            ) {
+
+                score +=
+                    Math.max(
+                        0,
+                        20 - data.pe
+                    ) * 0.05;
+
+            }
+
+
+            if (
+                score >
+                bestScore
+            ) {
+
+                bestScore =
+                    score;
+
+
+                bestStock = {
+
+                    symbol:
+                        symbol,
+
+                    prediction:
+                        prediction,
+
+                    predictedReturn:
+                        predictedReturn
+
+                };
 
             }
 
@@ -859,82 +1822,287 @@ new Chart(
 
     }
 
-);
+
+    // ----------------------------------------------
+    // LOWEST P/E
+    // ----------------------------------------------
+
+    if (lowestPEStock) {
+
+        document.getElementById(
+            "lowestPE"
+        ).innerText =
+            lowestPEStock;
 
 
-new Chart(
+        document.getElementById(
+            "lowestPEValue"
+        ).innerText =
+            lowestPE.toFixed(2);
 
-    document.getElementById("peChart"),
+    }
 
-    {
 
-        type: "bar",
+    // ----------------------------------------------
+    // BEST PRICE
+    // ----------------------------------------------
 
-        data: {
+    if (highestPriceStock) {
 
-            labels: selectedStocks,
+        document.getElementById(
+            "bestPrice"
+        ).innerText =
+            highestPriceStock;
 
-            datasets: [{
 
-                label: "P/E Ratio",
+        document.getElementById(
+            "bestPriceValue"
+        ).innerText =
+            "₹" +
+            formatNumber(
+                highestPrice
+            );
 
-                data: selectedStocks.map(
-                    stock => peData[stock]
-                )
+    }
 
-            }]
 
-        },
+    // ----------------------------------------------
+    // BEST OVERALL
+    // ----------------------------------------------
 
-        options: {
+    if (bestStock) {
 
-            responsive: true,
 
-            maintainAspectRatio: false,
+        document.getElementById(
+            "bestStock"
+        ).innerText =
+            bestStock.symbol;
 
-            plugins: {
 
-                legend: {
+        document.getElementById(
+            "bestStockText"
+        ).innerText =
 
-                    labels: {
+            bestStock.prediction.trend +
+            " · " +
+            bestStock.prediction.confidence +
+            "% confidence";
 
-                        color: "#cbd5e1"
 
-                    }
+        // ------------------------------------------
+        // AI RECOMMENDATION TEXT
+        // ------------------------------------------
 
-                }
+        const returnValue =
+            bestStock.predictedReturn;
 
-            },
 
-            scales: {
+        const direction =
+            returnValue >= 0
+                ? "upside"
+                : "downside";
 
-                x: {
 
-                    ticks: {
+        const trendClass =
+            bestStock.prediction.trend ===
+            "Bullish"
+                ? "positive"
+                : "negative";
 
-                        color: "#94a3b8"
 
-                    },
+        document.getElementById(
+            "recommendation"
+        ).innerHTML = `
 
-                    grid: {
+            Based on the latest
+            <strong>yfinance</strong>
+            market data and the
+            MarketMentor machine-learning model,
 
-                        color: "#1f2937"
+            <strong class="positive">
+                ${bestStock.symbol}
+            </strong>
 
-                    }
+            currently shows the strongest
+            predicted 1-week ${direction}
+            of
+
+            <strong>
+                ${returnValue >= 0 ? "+" : ""}
+                ${returnValue.toFixed(2)}%
+            </strong>.
+
+            The model predicts a
+
+            <strong class="${trendClass}">
+                ${bestStock.prediction.trend}
+            </strong>
+
+            trend with a model confidence score
+            of
+
+            <strong>
+                ${bestStock.prediction.confidence}%
+            </strong>.
+
+            <br><br>
+
+            <span style="font-size:10px;">
+                This is an educational ML model output
+                and should not be treated as financial advice.
+            </span>
+
+        `;
+
+    }
+
+}
+
+
+// ======================================================
+// CREATE CHARTS
+// ======================================================
+
+function createCharts() {
+
+
+    // ----------------------------------------------
+    // DESTROY OLD CHARTS
+    // ----------------------------------------------
+
+    if (priceChart) {
+
+        priceChart.destroy();
+
+        priceChart = null;
+
+    }
+
+
+    if (peChart) {
+
+        peChart.destroy();
+
+        peChart = null;
+
+    }
+
+
+    // ----------------------------------------------
+    // PRICE DATA
+    // ----------------------------------------------
+
+    const priceValues =
+        selectedStocks.map(
+            symbol => {
+
+                return stockData[symbol]
+                    ? stockData[symbol].price
+                    : 0;
+
+            }
+        );
+
+
+    // ----------------------------------------------
+    // PE DATA
+    // ----------------------------------------------
+
+    const peValues =
+        selectedStocks.map(
+            symbol => {
+
+                return stockData[symbol] &&
+                    stockData[symbol].pe !== null &&
+                    stockData[symbol].pe !== undefined
+
+                    ? stockData[symbol].pe
+
+                    : 0;
+
+            }
+        );
+
+
+    // ----------------------------------------------
+    // PRICE CHART
+    // ----------------------------------------------
+
+    priceChart =
+        new Chart(
+
+            document.getElementById(
+                "priceChart"
+            ),
+
+            {
+
+                type: "bar",
+
+                data: {
+
+                    labels:
+                        selectedStocks,
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                "Price (₹)",
+
+                            data:
+                                priceValues,
+
+                            borderWidth:
+                                0
+
+                        }
+
+                    ]
 
                 },
 
-                y: {
 
-                    ticks: {
+                options: {
 
-                        color: "#94a3b8"
+                    responsive: true,
+
+                    maintainAspectRatio:
+                        false,
+
+                    plugins: {
+
+                        legend: {
+
+                            display:
+                                false
+
+                        }
 
                     },
 
-                    grid: {
 
-                        color: "#1f2937"
+                    scales: {
+
+                        x: {
+
+                            grid: {
+
+                                display:
+                                    false
+
+                            }
+
+                        },
+
+
+                        y: {
+
+                            beginAtZero:
+                                true
+
+                        }
 
                     }
 
@@ -942,11 +2110,217 @@ new Chart(
 
             }
 
-        }
+        );
 
-    }
 
-);
+    // ----------------------------------------------
+    // PE CHART
+    // ----------------------------------------------
+
+    peChart =
+        new Chart(
+
+            document.getElementById(
+                "peChart"
+            ),
+
+            {
+
+                type: "bar",
+
+                data: {
+
+                    labels:
+                        selectedStocks,
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                "P/E Ratio",
+
+                            data:
+                                peValues,
+
+                            borderWidth:
+                                0
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio:
+                        false,
+
+                    plugins: {
+
+                        legend: {
+
+                            display:
+                                false
+
+                        }
+
+                    },
+
+
+                    scales: {
+
+                        x: {
+
+                            grid: {
+
+                                display:
+                                    false
+
+                            }
+
+                        },
+
+
+                        y: {
+
+                            beginAtZero:
+                                true
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        );
+
+}
+
+
+// ======================================================
+// COMPARE STOCKS
+// ======================================================
+
+async function compareStocks() {
+
+
+    selectedStocks = [
+
+        document.getElementById(
+            "stock1"
+        ).value,
+
+        document.getElementById(
+            "stock2"
+        ).value,
+
+        document.getElementById(
+            "stock3"
+        ).value,
+
+        document.getElementById(
+            "stock4"
+        ).value
+
+    ];
+
+
+    document.getElementById(
+        "stocksCompared"
+    ).innerText =
+        selectedStocks.length;
+
+
+    document.getElementById(
+        "recommendation"
+    ).innerText =
+        "Loading live market data and AI predictions...";
+
+
+    document.getElementById(
+        "predictionBody"
+    ).innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="6"
+                class="ai-loading">
+
+                Loading AI predictions...
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+    await loadAllStocks();
+
+}
+
+
+// ======================================================
+// RESET
+// ======================================================
+
+function resetComparison() {
+
+
+    document.getElementById(
+        "stock1"
+    ).value =
+        "RELIANCE";
+
+
+    document.getElementById(
+        "stock2"
+    ).value =
+        "TCS";
+
+
+    document.getElementById(
+        "stock3"
+    ).value =
+        "INFY";
+
+
+    document.getElementById(
+        "stock4"
+    ).value =
+        "HDFCBANK";
+
+
+    compareStocks();
+
+}
+
+
+// ======================================================
+// START APPLICATION
+// ======================================================
+
+async function startApplication() {
+
+    await loadAllStocks();
+
+}
+
+
+// ======================================================
+// START
+// ======================================================
+
+startApplication();
+
 
 </script>
 

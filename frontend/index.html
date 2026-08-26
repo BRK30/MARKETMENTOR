@@ -2,770 +2,932 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MarketMentor | AI Stock Dashboard</title>
+    <title>MarketMentor | Dashboard</title>
 
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: #0b1120;
-            color: #f8fafc;
-        }
-
-        /* NAVIGATION */
-
-        nav {
-            height: 70px;
-
-            background: #111827;
-
-            border-bottom: 1px solid #1f2937;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            padding: 0 45px;
-
-            position: sticky;
-
-            top: 0;
-
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 24px;
-
-            font-weight: bold;
-
-            color: white;
-        }
-
-        .logo span {
-            color: #38bdf8;
-        }
-
-        .nav-links {
-            display: flex;
-
-            gap: 28px;
-        }
-
-        .nav-links a {
-            color: #94a3b8;
-
-            text-decoration: none;
-
-            font-size: 14px;
-
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover,
-        .nav-links .active {
-            color: #38bdf8;
-        }
-
-
-        /* HERO */
-
-        .hero {
-
-            max-width: 1200px;
-
-            margin: auto;
-
-            padding: 70px 30px 40px;
-
-        }
-
-        .badge {
-
-            display: inline-block;
-
-            background: #0f2942;
-
-            color: #38bdf8;
-
-            padding: 8px 14px;
-
-            border-radius: 20px;
-
-            font-size: 13px;
-
-            margin-bottom: 20px;
-
-        }
-
-        .hero h1 {
-
-            font-size: 52px;
-
-            max-width: 700px;
-
-            line-height: 1.1;
-
-            margin-bottom: 20px;
-
-        }
-
-        .hero h1 span {
-
-            color: #38bdf8;
-
-        }
-
-        .hero p {
-
-            max-width: 650px;
-
-            color: #94a3b8;
-
-            line-height: 1.7;
-
-            font-size: 17px;
-
-        }
-
-
-        .hero-buttons {
-
-            margin-top: 30px;
-
-            display: flex;
-
-            gap: 15px;
-
-        }
-
-        .btn {
-
-            padding: 13px 22px;
-
-            border-radius: 8px;
-
-            text-decoration: none;
-
-            font-weight: bold;
-
-            font-size: 14px;
-
-        }
-
-        .primary {
-
-            background: #2563eb;
-
-            color: white;
-
-        }
-
-        .secondary {
-
-            background: #1e293b;
-
-            color: white;
-
-            border: 1px solid #334155;
-
-        }
-
-
-        /* MARKET CARDS */
-
-        .container {
-
-            max-width: 1200px;
-
-            margin: auto;
-
-            padding: 20px 30px 60px;
-
-        }
-
-        .section-title {
-
-            font-size: 22px;
-
-            margin: 25px 0 18px;
-
-        }
-
-        .market-grid {
-
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            gap: 18px;
-
-        }
-
-        .market-card {
-
-            background: #111827;
-
-            border: 1px solid #1f2937;
-
-            padding: 22px;
-
-            border-radius: 12px;
-
-        }
-
-        .market-card .symbol {
-
-            color: #94a3b8;
-
-            font-size: 13px;
-
-        }
-
-        .market-card h3 {
-
-            margin: 10px 0;
-
-            font-size: 20px;
-
-        }
-
-        .up {
-
-            color: #22c55e;
-
-        }
-
-        .down {
-
-            color: #ef4444;
-
-        }
-
-        .change {
-
-            font-size: 13px;
-
-        }
-
-
-        /* FEATURE CARDS */
-
-        .features {
-
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 20px;
-
-        }
-
-        .feature {
-
-            background: #111827;
-
-            border: 1px solid #1f2937;
-
-            border-radius: 14px;
-
-            padding: 28px;
-
-            transition: 0.3s;
-
-        }
-
-        .feature:hover {
-
-            transform: translateY(-4px);
-
-            border-color: #2563eb;
-
-        }
-
-        .icon {
-
-            font-size: 30px;
-
-            margin-bottom: 15px;
-
-        }
-
-        .feature h3 {
-
-            margin-bottom: 10px;
-
-        }
-
-        .feature p {
-
-            color: #94a3b8;
-
-            line-height: 1.6;
-
-            font-size: 14px;
-
-        }
-
-        .feature a {
-
-            display: inline-block;
-
-            margin-top: 18px;
-
-            color: #38bdf8;
-
-            text-decoration: none;
-
-            font-size: 14px;
-
-        }
-
-
-        /* AI INSIGHT */
-
-        .ai-box {
-
-            margin-top: 25px;
-
-            background: linear-gradient(
-                135deg,
-                #111827,
-                #172554
-            );
-
-            border: 1px solid #1e3a8a;
-
-            border-radius: 14px;
-
-            padding: 30px;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            gap: 30px;
-
-        }
-
-        .ai-box h2 {
-
-            margin-bottom: 10px;
-
-        }
-
-        .ai-box p {
-
-            color: #94a3b8;
-
-            line-height: 1.6;
-
-            max-width: 700px;
-
-        }
-
-        .trend {
-
-            font-size: 28px;
-
-            font-weight: bold;
-
-            color: #22c55e;
-
-        }
-
-
-        /* FOOTER */
-
-        footer {
-
-            border-top: 1px solid #1f2937;
-
-            text-align: center;
-
-            padding: 25px;
-
-            color: #64748b;
-
-            font-size: 13px;
-
-        }
-
-
-        /* RESPONSIVE */
-
-        @media(max-width: 900px) {
-
-            .market-grid {
-
-                grid-template-columns: repeat(2, 1fr);
-
-            }
-
-            .features {
-
-                grid-template-columns: 1fr;
-
-            }
-
-            .hero h1 {
-
-                font-size: 42px;
-
-            }
-
-        }
-
-
-        @media(max-width: 600px) {
-
-            nav {
-
-                padding: 0 20px;
-
-            }
-
-            .nav-links {
-
-                gap: 10px;
-
-            }
-
-            .nav-links a {
-
-                font-size: 11px;
-
-            }
-
-            .market-grid {
-
-                grid-template-columns: 1fr;
-
-            }
-
-            .hero {
-
-                padding-top: 45px;
-
-            }
-
-            .hero h1 {
-
-                font-size: 36px;
-
-            }
-
-            .ai-box {
-
-                flex-direction: column;
-
-                align-items: flex-start;
-
-            }
-
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+<div class="app">
 
-<!-- NAVIGATION -->
+    <!-- ================= SIDEBAR ================= -->
 
-<nav>
+    <aside class="sidebar">
 
-    <div class="logo">
-        Market<span>Mentor</span>
-    </div>
+        <div class="brand">
 
-    <div class="nav-links">
-
-        <a href="index.html" class="active">
-            Dashboard
-        </a>
-
-        <a href="portfolio.html">
-            Portfolio
-        </a>
-
-        <a href="compare.html">
-            Compare
-        </a>
-
-        <a href="prediction.html">
-            AI Prediction
-        </a>
-
-    </div>
-
-</nav>
-
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <div class="badge">
-        🤖 AI Powered Stock Analysis
-    </div>
-
-    <h1>
-        Make smarter decisions with
-        <span>MarketMentor</span>
-    </h1>
-
-    <p>
-
-        Monitor your portfolio, compare stocks and explore
-        AI-powered price predictions through a unified
-        stock market analysis platform.
-
-    </p>
-
-
-    <div class="hero-buttons">
-
-        <a
-            href="portfolio.html"
-            class="btn primary"
-        >
-            View Portfolio
-        </a>
-
-        <a
-            href="prediction.html"
-            class="btn secondary"
-        >
-            Open AI Prediction
-        </a>
-
-    </div>
-
-</section>
-
-
-<div class="container">
-
-
-    <!-- MARKET OVERVIEW -->
-
-    <h2 class="section-title">
-        Market Overview
-    </h2>
-
-
-    <div class="market-grid">
-
-
-        <div class="market-card">
-
-            <div class="symbol">
-                RELIANCE
+            <div class="brand-logo">
+                M
             </div>
 
-            <h3>
-                ₹2,950
-            </h3>
-
-            <div class="change up">
-                ▲ +2.14%
+            <div>
+                <h2>MarketMentor</h2>
+                <span>AI-Powered Stock Intelligence</span>
             </div>
 
         </div>
 
 
-        <div class="market-card">
+        <nav class="nav">
 
-            <div class="symbol">
-                TCS
-            </div>
+            <a href="index.html" class="active">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
 
-            <h3>
-                ₹3,650
-            </h3>
-
-            <div class="change up">
-                ▲ +1.82%
-            </div>
-
-        </div>
-
-
-        <div class="market-card">
-
-            <div class="symbol">
-                INFY
-            </div>
-
-            <h3>
-                ₹1,500
-            </h3>
-
-            <div class="change up">
-                ▲ +1.25%
-            </div>
-
-        </div>
-
-
-        <div class="market-card">
-
-            <div class="symbol">
-                HDFCBANK
-            </div>
-
-            <h3>
-                ₹1,680
-            </h3>
-
-            <div class="change up">
-                ▲ +1.61%
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <!-- FEATURES -->
-
-    <h2 class="section-title">
-        MarketMentor Tools
-    </h2>
-
-
-    <div class="features">
-
-
-        <div class="feature">
-
-            <div class="icon">
-                📊
-            </div>
-
-            <h3>
-                Portfolio
-            </h3>
-
-            <p>
-                Track total investment, current portfolio
-                value, holdings and profit or loss with
-                visual analytics.
-            </p>
+            <a href="#">
+                <span class="nav-icon">☆</span>
+                <span>Live Market</span>
+            </a>
 
             <a href="portfolio.html">
-                Open Portfolio →
+                <span class="nav-icon">▣</span>
+                <span>Portfolio</span>
             </a>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="icon">
-                ⚖️
-            </div>
-
-            <h3>
-                Compare Stocks
-            </h3>
-
-            <p>
-                Compare up to four stocks using price,
-                market cap, P/E ratio, dividend yield
-                and AI recommendations.
-            </p>
 
             <a href="compare.html">
-                Compare Stocks →
+                <span class="nav-icon">◫</span>
+                <span>Compare Stocks</span>
             </a>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="icon">
-                🤖
-            </div>
-
-            <h3>
-                AI Prediction
-            </h3>
-
-            <p>
-                Generate tomorrow and next-week price
-                predictions with trend analysis and
-                confidence scores.
-            </p>
 
             <a href="prediction.html">
-                Predict Price →
+                <span class="nav-icon">◉</span>
+                <span>AI Prediction</span>
             </a>
 
+        </nav>
+
+
+        <!-- MARKET INDICES -->
+
+        <div class="market-section">
+
+            <div class="market-title">
+                MARKET INDICES
+            </div>
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    NIFTY 50
+                </div>
+
+                <div class="index-value">
+                    24,636.00
+                </div>
+
+                <div class="index-change">
+                    +116.10 (0.47%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    SENSEX
+                </div>
+
+                <div class="index-value">
+                    81,067.71
+                </div>
+
+                <div class="index-change">
+                    +295.43 (0.37%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    BANK NIFTY
+                </div>
+
+                <div class="index-value">
+                    55,292.35
+                </div>
+
+                <div class="index-change">
+                    +210.55 (0.38%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    FIN NIFTY
+                </div>
+
+                <div class="index-value">
+                    24,599.50
+                </div>
+
+                <div class="index-change">
+                    +101.75 (0.42%)
+                </div>
+
+            </div>
+
         </div>
 
 
-    </div>
+        <!-- PROFILE -->
 
+        <div class="profile">
 
-    <!-- AI INSIGHT -->
+            <div class="profile-top">
 
-    <div class="ai-box">
+                <div class="avatar">
+                    AR
+                </div>
 
-        <div>
+                <div>
 
-            <h2>
-                🤖 MarketMentor AI Insight
-            </h2>
+                    <div class="profile-name">
+                        MarketMentor User
+                    </div>
 
-            <p>
-                Based on the current demonstration data,
-                the overall market trend is positive.
-                Explore individual stocks using the
-                AI Prediction module.
-            </p>
+                    <div class="profile-plan">
+                        AI Analytics
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="trend">
-            BULLISH
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div>
+
+                <div class="page-title">
+                    Market Dashboard
+                </div>
+
+                <div class="page-subtitle">
+                    Monitor markets, stocks and AI-powered insights
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button class="btn">
+                    ↻ Refresh Data
+                </button>
+
+                <button class="btn btn-primary">
+                    + Add Stock
+                </button>
+
+            </div>
+
         </div>
 
-    </div>
 
+        <!-- ================= KPI CARDS ================= -->
+
+        <div class="kpi-grid">
+
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Market Status
+                </div>
+
+                <div class="kpi-value">
+                    OPEN
+                </div>
+
+                <div class="kpi-change">
+                    ● Live Market
+                </div>
+
+                <div class="kpi-icon">
+                    ●
+                </div>
+
+            </div>
+
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    NIFTY 50
+                </div>
+
+                <div class="kpi-value">
+                    24,636.00
+                </div>
+
+                <div class="kpi-change">
+                    +0.47%
+                </div>
+
+                <div class="kpi-icon">
+                    ↑
+                </div>
+
+            </div>
+
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    SENSEX
+                </div>
+
+                <div class="kpi-value">
+                    81,067.71
+                </div>
+
+                <div class="kpi-change">
+                    +0.37%
+                </div>
+
+                <div class="kpi-icon">
+                    ↑
+                </div>
+
+            </div>
+
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Top Gainer
+                </div>
+
+                <div class="kpi-value">
+                    TCS
+                </div>
+
+                <div class="kpi-change">
+                    +1.82%
+                </div>
+
+                <div class="kpi-icon">
+                    ↗
+                </div>
+
+            </div>
+
+
+            <div class="card kpi-card">
+
+                <div class="kpi-title">
+                    Stocks Tracked
+                </div>
+
+                <div class="kpi-value">
+                    4
+                </div>
+
+                <div class="kpi-change">
+                    NSE Stocks
+                </div>
+
+                <div class="kpi-icon">
+                    ◉
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= MARKET OVERVIEW ================= -->
+
+        <div class="grid-2">
+
+
+            <!-- MARKET PERFORMANCE -->
+
+            <div class="card panel">
+
+                <div class="panel-title">
+                    Market Performance
+                </div>
+
+                <div class="panel-subtitle">
+                    NIFTY 50 performance overview
+                </div>
+
+
+                <div class="chart-box">
+
+                    <div class="fake-chart">
+
+                        <svg viewBox="0 0 800 220"
+                             preserveAspectRatio="none">
+
+                            <line
+                                x1="0"
+                                y1="50"
+                                x2="800"
+                                y2="50"
+                                stroke="#e8ebf1"
+                                stroke-width="1"/>
+
+                            <line
+                                x1="0"
+                                y1="110"
+                                x2="800"
+                                y2="110"
+                                stroke="#e8ebf1"
+                                stroke-width="1"/>
+
+                            <line
+                                x1="0"
+                                y1="170"
+                                x2="800"
+                                y2="170"
+                                stroke="#e8ebf1"
+                                stroke-width="1"/>
+
+
+                            <polyline
+                                fill="none"
+                                stroke="#2563eb"
+                                stroke-width="4"
+                                points="
+                                0,170
+                                50,155
+                                100,165
+                                150,125
+                                200,140
+                                250,105
+                                300,120
+                                350,90
+                                400,105
+                                450,75
+                                500,95
+                                550,65
+                                600,80
+                                650,45
+                                700,60
+                                750,35
+                                800,20
+                                "/>
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
+
+                <div style="display:flex; justify-content:space-between; font-size:11px; color:#7a8495;">
+
+                    <span>1D</span>
+                    <span>1W</span>
+                    <span>1M</span>
+                    <span>6M</span>
+                    <span>1Y</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- MARKET SUMMARY -->
+
+            <div class="card panel">
+
+                <div class="panel-title">
+                    Market Summary
+                </div>
+
+                <div class="panel-subtitle">
+                    Today's market snapshot
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Advancing Stocks
+                    </div>
+
+                    <div class="positive">
+                        1,245
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Declining Stocks
+                    </div>
+
+                    <div class="negative">
+                        782
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Market Volume
+                    </div>
+
+                    <div class="list-value">
+                        82.4 Cr
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Market Trend
+                    </div>
+
+                    <div class="positive">
+                        Bullish
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Last Updated
+                    </div>
+
+                    <div class="list-value">
+                        Live
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= STOCK CARDS ================= -->
+
+        <div class="card table-card">
+
+            <div class="table-header">
+
+                <div>
+
+                    <div class="panel-title">
+                        Popular Stocks
+                    </div>
+
+                    <div class="panel-subtitle">
+                        Track selected stocks
+                    </div>
+
+                </div>
+
+                <button class="btn">
+                    View All
+                </button>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            STOCK
+                        </th>
+
+                        <th>
+                            PRICE
+                        </th>
+
+                        <th>
+                            CHANGE
+                        </th>
+
+                        <th>
+                            DAY HIGH
+                        </th>
+
+                        <th>
+                            DAY LOW
+                        </th>
+
+                        <th>
+                            VOLUME
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <tr>
+
+                        <td>
+
+                            <div class="stock-name">
+                                TCS
+                            </div>
+
+                            <div class="stock-sub">
+                                TCS · NSE
+                            </div>
+
+                        </td>
+
+                        <td>
+                            ₹3,650.00
+                        </td>
+
+                        <td class="positive">
+                            +1.82%
+                        </td>
+
+                        <td>
+                            ₹3,680.00
+                        </td>
+
+                        <td>
+                            ₹3,590.00
+                        </td>
+
+                        <td>
+                            21.4 L
+                        </td>
+
+                        <td>
+                            <button class="btn">
+                                View
+                            </button>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+
+                            <div class="stock-name">
+                                INFY
+                            </div>
+
+                            <div class="stock-sub">
+                                INFY · NSE
+                            </div>
+
+                        </td>
+
+                        <td>
+                            ₹1,500.00
+                        </td>
+
+                        <td class="positive">
+                            +1.25%
+                        </td>
+
+                        <td>
+                            ₹1,525.00
+                        </td>
+
+                        <td>
+                            ₹1,478.00
+                        </td>
+
+                        <td>
+                            43.1 L
+                        </td>
+
+                        <td>
+                            <button class="btn">
+                                View
+                            </button>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+
+                            <div class="stock-name">
+                                HDFCBANK
+                            </div>
+
+                            <div class="stock-sub">
+                                HDFCBANK · NSE
+                            </div>
+
+                        </td>
+
+                        <td>
+                            ₹1,680.00
+                        </td>
+
+                        <td class="positive">
+                            +1.61%
+                        </td>
+
+                        <td>
+                            ₹1,695.00
+                        </td>
+
+                        <td>
+                            ₹1,650.00
+                        </td>
+
+                        <td>
+                            82.4 L
+                        </td>
+
+                        <td>
+                            <button class="btn">
+                                View
+                            </button>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+
+                            <div class="stock-name">
+                                RELIANCE
+                            </div>
+
+                            <div class="stock-sub">
+                                RELIANCE · NSE
+                            </div>
+
+                        </td>
+
+                        <td>
+                            ₹2,950.00
+                        </td>
+
+                        <td class="positive">
+                            +2.14%
+                        </td>
+
+                        <td>
+                            ₹2,980.00
+                        </td>
+
+                        <td>
+                            ₹2,910.00
+                        </td>
+
+                        <td>
+                            51.2 L
+                        </td>
+
+                        <td>
+                            <button class="btn">
+                                View
+                            </button>
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- ================= BOTTOM CARDS ================= -->
+
+        <div class="grid-3">
+
+
+            <!-- TOP GAINERS -->
+
+            <div class="card panel">
+
+                <div class="panel-title">
+                    Top Gainers
+                </div>
+
+                <div class="panel-subtitle">
+                    Today's strongest stocks
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        RELIANCE
+                    </div>
+
+                    <div class="positive">
+                        +2.14%
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        TCS
+                    </div>
+
+                    <div class="positive">
+                        +1.82%
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        HDFCBANK
+                    </div>
+
+                    <div class="positive">
+                        +1.61%
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOP LOSERS -->
+
+            <div class="card panel">
+
+                <div class="panel-title">
+                    Top Losers
+                </div>
+
+                <div class="panel-subtitle">
+                    Stocks under pressure
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        RELIANCE
+                    </div>
+
+                    <div class="negative">
+                        -0.21%
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        INFY
+                    </div>
+
+                    <div class="negative">
+                        -0.15%
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        HDFCBANK
+                    </div>
+
+                    <div class="negative">
+                        -0.08%
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI INSIGHT -->
+
+            <div class="card panel">
+
+                <div class="panel-title">
+                    MarketMentor AI Insight
+                </div>
+
+                <div class="panel-subtitle">
+                    AI-powered market observation
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Market Trend
+                    </div>
+
+                    <div class="positive">
+                        Bullish
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        Strongest Stock
+                    </div>
+
+                    <div class="list-value">
+                        TCS
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="list-name">
+                        AI Confidence
+                    </div>
+
+                    <div class="positive">
+                        High
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= DISCLAIMER ================= -->
+
+        <div style="
+            text-align:center;
+            color:#8b93a3;
+            font-size:10px;
+            padding:20px 0 5px;
+        ">
+
+            MarketMentor is an educational project.
+            Market data and AI predictions are for demonstration purposes.
+
+        </div>
+
+
+    </main>
 
 </div>
-
-
-<footer>
-
-    MarketMentor © 2026
-
-    <br><br>
-
-    AI-based stock market analysis platform
-
-</footer>
 
 
 </body>
