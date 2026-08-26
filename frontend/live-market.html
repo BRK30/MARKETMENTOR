@@ -1,0 +1,1398 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MarketMentor | Live Market</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================================
+           LIVE MARKET PAGE
+        ========================================= */
+
+        .live-main {
+            padding: 30px 32px 45px;
+        }
+
+        .live-page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .live-page-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: #14213d;
+            margin-bottom: 7px;
+        }
+
+        .live-page-subtitle {
+            color: #65758b;
+            font-size: 15px;
+        }
+
+        .live-status {
+            color: #119447;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding-top: 5px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #12a04a;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+
+        /* =========================================
+           SEARCH CARD
+        ========================================= */
+
+        .search-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 5px 18px rgba(20, 40, 80, 0.05);
+
+            display: flex;
+            gap: 12px;
+
+            margin-bottom: 22px;
+        }
+
+        .search-input {
+            flex: 1;
+            height: 48px;
+
+            border: 1px solid #d4dae3;
+            border-radius: 8px;
+
+            padding: 0 16px;
+
+            font-size: 15px;
+            outline: none;
+            color: #111827;
+        }
+
+        .search-input:focus {
+            border-color: #2864e6;
+            box-shadow: 0 0 0 3px rgba(40, 100, 230, 0.1);
+        }
+
+        .search-button {
+            width: 110px;
+            height: 48px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #2864e6;
+            color: #ffffff;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .search-button:hover {
+            background: #1f55ca;
+        }
+
+        .search-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+
+        /* =========================================
+           DATA STATUS
+        ========================================= */
+
+        .data-status {
+            color: #119447;
+            font-size: 14px;
+            font-weight: 600;
+
+            margin-bottom: 18px;
+
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+
+        /* =========================================
+           LOADING
+        ========================================= */
+
+        .loading {
+            display: none;
+
+            background: #ffffff;
+            padding: 18px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            font-size: 14px;
+            color: #64748b;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* =========================================
+           ERROR
+        ========================================= */
+
+        .error {
+            display: none;
+
+            background: #fff1f2;
+            color: #be123c;
+
+            padding: 14px 18px;
+
+            border-radius: 9px;
+
+            margin-bottom: 18px;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+
+        /* =========================================
+           STOCK CARD
+        ========================================= */
+
+        .stock-card {
+            background: #ffffff;
+
+            border-radius: 14px;
+
+            padding: 26px;
+
+            box-shadow: 0 5px 18px rgba(20, 40, 80, 0.05);
+
+            margin-bottom: 22px;
+        }
+
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .stock-symbol {
+            font-size: 30px;
+            font-weight: 700;
+
+            color: #14213d;
+
+            margin-bottom: 5px;
+        }
+
+        .stock-type {
+            color: #66758b;
+            font-size: 14px;
+        }
+
+        .market-badge {
+            background: #d9f8e6;
+            color: #128548;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .price {
+            margin-top: 22px;
+
+            font-size: 42px;
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+        .price-change {
+            margin-top: 6px;
+
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .positive {
+            color: #0c9b4b;
+        }
+
+        .negative {
+            color: #dc3545;
+        }
+
+
+        /* =========================================
+           STATISTICS
+        ========================================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 16px;
+
+            margin-bottom: 22px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+
+            border-radius: 14px;
+
+            padding: 22px;
+
+            box-shadow: 0 5px 18px rgba(20, 40, 80, 0.05);
+
+            min-height: 110px;
+        }
+
+        .stat-label {
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 12px;
+
+            text-transform: uppercase;
+
+            font-weight: 600;
+        }
+
+        .stat-value {
+            color: #172033;
+
+            font-size: 22px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           EXTRA DATA
+        ========================================= */
+
+        .extra-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 16px;
+        }
+
+        .extra-card {
+            background: #ffffff;
+
+            border-radius: 14px;
+
+            padding: 20px;
+
+            box-shadow: 0 5px 18px rgba(20, 40, 80, 0.05);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .extra-title {
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+        .extra-value {
+            font-size: 20px;
+
+            font-weight: 700;
+
+            color: #172033;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .live-main {
+                padding: 25px 18px;
+            }
+
+            .live-page-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-card {
+                flex-direction: column;
+            }
+
+            .search-button {
+                width: 100%;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .extra-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stock-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .price {
+                font-size: 36px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =================================================
+         SIDEBAR
+         EXACT SAME STRUCTURE AS DASHBOARD
+    ================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                M
+            </div>
+
+            <div>
+
+                <h2>
+                    MarketMentor
+                </h2>
+
+                <span>
+                    AI-Powered Stock Intelligence
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="nav">
+
+
+            <!-- DASHBOARD -->
+
+            <a href="index.html">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <!-- LIVE MARKET -->
+
+            <a href="live-market.html"
+               class="active">
+
+                <span class="nav-icon">
+                    ☆
+                </span>
+
+                <span>
+                    Live Market
+                </span>
+
+            </a>
+
+
+            <!-- PORTFOLIO -->
+
+            <a href="portfolio.html">
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                <span>
+                    Portfolio
+                </span>
+
+            </a>
+
+
+            <!-- COMPARE -->
+
+            <a href="compare.html">
+
+                <span class="nav-icon">
+                    ◫
+                </span>
+
+                <span>
+                    Compare Stocks
+                </span>
+
+            </a>
+
+
+            <!-- PREDICTION -->
+
+            <a href="prediction.html">
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                <span>
+                    AI Prediction
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- =================================================
+             MARKET INDICES
+             SAME AS DASHBOARD
+        ================================================== -->
+
+        <div class="market-section">
+
+            <div class="market-title">
+                MARKET INDICES
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    NIFTY 50
+                </div>
+
+                <div class="index-value">
+                    24,636.00
+                </div>
+
+                <div class="index-change">
+                    +116.10 (0.47%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    SENSEX
+                </div>
+
+                <div class="index-value">
+                    81,067.71
+                </div>
+
+                <div class="index-change">
+                    +295.43 (0.37%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    BANK NIFTY
+                </div>
+
+                <div class="index-value">
+                    55,292.35
+                </div>
+
+                <div class="index-change">
+                    +210.55 (0.38%)
+                </div>
+
+            </div>
+
+
+            <div class="index-item">
+
+                <div class="index-name">
+                    FIN NIFTY
+                </div>
+
+                <div class="index-value">
+                    24,599.50
+                </div>
+
+                <div class="index-change">
+                    +101.75 (0.42%)
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PROFILE
+             SAME AS DASHBOARD
+        ================================================== -->
+
+        <div class="profile">
+
+            <div class="profile-top">
+
+                <div class="avatar">
+                    AR
+                </div>
+
+                <div>
+
+                    <div class="profile-name">
+                        MarketMentor User
+                    </div>
+
+                    <div class="profile-plan">
+                        AI Analytics
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <main class="main">
+
+
+        <!-- =================================================
+             LIVE MARKET CONTENT
+        ================================================== -->
+
+        <section class="live-main">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="live-page-header">
+
+                <div>
+
+                    <div class="live-page-title">
+                        Live Market
+                    </div>
+
+                    <div class="live-page-subtitle">
+                        Monitor the latest available NSE market data powered by yfinance.
+                    </div>
+
+                </div>
+
+
+                <div class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    LIVE MARKET
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SEARCH
+            ================================================== -->
+
+            <div class="search-card">
+
+
+                <input
+                    type="text"
+                    id="symbolInput"
+                    class="search-input"
+                    value="TCS"
+                    placeholder="Enter stock symbol e.g. TCS"
+                >
+
+
+                <button
+                    id="searchButton"
+                    class="search-button"
+                    onclick="searchStock()"
+                >
+                    Search
+                </button>
+
+
+            </div>
+
+
+            <!-- DATA STATUS -->
+
+            <div class="data-status">
+
+                <span class="live-dot"></span>
+
+                Latest data from yfinance
+
+            </div>
+
+
+            <!-- LOADING -->
+
+            <div
+                class="loading"
+                id="loading"
+            >
+                Loading market data...
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div
+                class="error"
+                id="error"
+            >
+                Unable to load market data.
+            </div>
+
+
+            <!-- =================================================
+                 STOCK CARD
+            ================================================== -->
+
+            <div class="stock-card">
+
+
+                <div class="stock-header">
+
+
+                    <div>
+
+                        <div
+                            class="stock-symbol"
+                            id="stockSymbol"
+                        >
+                            TCS
+                        </div>
+
+
+                        <div class="stock-type">
+                            NSE Equity
+                        </div>
+
+                    </div>
+
+
+                    <div class="market-badge">
+                        ● Market Data
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    class="price"
+                    id="stockPrice"
+                >
+                    ₹ 2,270.00
+                </div>
+
+
+                <div
+                    class="price-change"
+                    id="priceChange"
+                >
+                    --
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Open
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="openPrice"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Day High
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="dayHigh"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Day Low
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="dayLow"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Volume
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="volume"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 EXTRA DATA
+            ================================================== -->
+
+            <div class="extra-grid">
+
+
+                <div class="extra-card">
+
+                    <div class="extra-title">
+                        Previous Close
+                    </div>
+
+                    <div
+                        class="extra-value"
+                        id="previousClose"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+
+                <div class="extra-card">
+
+                    <div class="extra-title">
+                        Market Status
+                    </div>
+
+                    <div
+                        class="extra-value positive"
+                        id="marketStatus"
+                    >
+                        LIVE
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+    /* =========================================
+       FORMAT NUMBER
+    ========================================= */
+
+    function formatNumber(value) {
+
+        if (
+            value === null ||
+            value === undefined ||
+            value === "" ||
+            isNaN(value)
+        ) {
+
+            return "--";
+
+        }
+
+
+        return Number(value).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: 2
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       FORMAT PRICE
+    ========================================= */
+
+    function formatPrice(value) {
+
+        if (
+            value === null ||
+            value === undefined ||
+            value === "" ||
+            isNaN(value)
+        ) {
+
+            return "--";
+
+        }
+
+
+        return "₹ " +
+            Number(value).toLocaleString(
+                "en-IN",
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            );
+
+    }
+
+
+    /* =========================================
+       SEARCH STOCK
+    ========================================= */
+
+    async function searchStock() {
+
+
+        const input =
+            document.getElementById(
+                "symbolInput"
+            );
+
+
+        const button =
+            document.getElementById(
+                "searchButton"
+            );
+
+
+        const loading =
+            document.getElementById(
+                "loading"
+            );
+
+
+        const error =
+            document.getElementById(
+                "error"
+            );
+
+
+        let symbol =
+            input.value
+                .trim()
+                .toUpperCase();
+
+
+        /* VALIDATION */
+
+        if (!symbol) {
+
+            alert(
+                "Please enter a stock symbol."
+            );
+
+            return;
+
+        }
+
+
+        /* LOADING */
+
+        button.disabled = true;
+
+        button.innerText = "Loading...";
+
+        loading.style.display = "block";
+
+        error.style.display = "none";
+
+
+        try {
+
+
+            /* =====================================
+               FLASK API
+            ====================================== */
+
+            const response =
+                await fetch(
+                    `/api/stock/${symbol}`
+                );
+
+
+            /* RESPONSE CHECK */
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to fetch market data"
+                );
+
+            }
+
+
+            /* JSON */
+
+            const data =
+                await response.json();
+
+
+            console.log(
+                "Market Data:",
+                data
+            );
+
+
+            /* BACKEND SUCCESS */
+
+            if (
+                data.success === false
+            ) {
+
+                throw new Error(
+                    data.message ||
+                    "Stock data not found"
+                );
+
+            }
+
+
+            /* PRICE */
+
+            const price =
+                data.price ??
+                data.current_price ??
+                data.currentPrice ??
+                data.last_price ??
+                data.lastPrice;
+
+
+            /* OPEN */
+
+            const open =
+                data.open ??
+                data.Open;
+
+
+            /* HIGH */
+
+            const high =
+                data.high ??
+                data.day_high ??
+                data.dayHigh ??
+                data.High;
+
+
+            /* LOW */
+
+            const low =
+                data.low ??
+                data.day_low ??
+                data.dayLow ??
+                data.Low;
+
+
+            /* VOLUME */
+
+            const volume =
+                data.volume ??
+                data.Volume;
+
+
+            /* PREVIOUS CLOSE */
+
+            const previousClose =
+                data.previous_close ??
+                data.previousClose ??
+                data.prev_close;
+
+
+            /* CHANGE */
+
+            const change =
+                data.change ??
+                data.price_change ??
+                data.change_value;
+
+
+            /* CHANGE % */
+
+            const changePercent =
+                data.change_percent ??
+                data.changePercent ??
+                data.percent_change;
+
+
+            /* UPDATE SYMBOL */
+
+            document.getElementById(
+                "stockSymbol"
+            ).innerText = symbol;
+
+
+            /* UPDATE PRICE */
+
+            document.getElementById(
+                "stockPrice"
+            ).innerText =
+                formatPrice(price);
+
+
+            /* UPDATE OPEN */
+
+            document.getElementById(
+                "openPrice"
+            ).innerText =
+                formatPrice(open);
+
+
+            /* UPDATE HIGH */
+
+            document.getElementById(
+                "dayHigh"
+            ).innerText =
+                formatPrice(high);
+
+
+            /* UPDATE LOW */
+
+            document.getElementById(
+                "dayLow"
+            ).innerText =
+                formatPrice(low);
+
+
+            /* UPDATE VOLUME */
+
+            document.getElementById(
+                "volume"
+            ).innerText =
+                formatNumber(volume);
+
+
+            /* UPDATE PREVIOUS CLOSE */
+
+            document.getElementById(
+                "previousClose"
+            ).innerText =
+                formatPrice(previousClose);
+
+
+            /* =====================================
+               PRICE CHANGE
+            ====================================== */
+
+            const changeElement =
+                document.getElementById(
+                    "priceChange"
+                );
+
+
+            if (
+                change !== null &&
+                change !== undefined &&
+                !isNaN(change)
+            ) {
+
+
+                let changeText =
+                    Number(change) >= 0
+                        ? "+"
+                        : "";
+
+
+                changeText +=
+                    formatPrice(
+                        Math.abs(
+                            Number(change)
+                        )
+                    );
+
+
+                /* CHANGE PERCENT */
+
+                if (
+                    changePercent !== null &&
+                    changePercent !== undefined &&
+                    !isNaN(changePercent)
+                ) {
+
+                    changeText +=
+                        " (" +
+                        (
+                            Number(changePercent) >= 0
+                                ? "+"
+                                : ""
+                        ) +
+                        Number(
+                            changePercent
+                        ).toFixed(2) +
+                        "%)";
+
+                }
+
+
+                changeElement.innerText =
+                    changeText;
+
+
+                /* POSITIVE / NEGATIVE */
+
+                if (
+                    Number(change) >= 0
+                ) {
+
+                    changeElement.className =
+                        "price-change positive";
+
+                } else {
+
+                    changeElement.className =
+                        "price-change negative";
+
+                }
+
+
+            } else {
+
+                changeElement.innerText =
+                    "--";
+
+                changeElement.className =
+                    "price-change";
+
+            }
+
+
+            /* MARKET STATUS */
+
+            document.getElementById(
+                "marketStatus"
+            ).innerText = "LIVE";
+
+
+        }
+
+
+        /* =====================================
+           ERROR
+        ====================================== */
+
+        catch (err) {
+
+            console.error(
+                "Market Error:",
+                err
+            );
+
+
+            error.innerText =
+                "Unable to load market data. Please check the stock symbol and Flask server.";
+
+
+            error.style.display =
+                "block";
+
+        }
+
+
+        /* =====================================
+           FINISH
+        ====================================== */
+
+        finally {
+
+            loading.style.display =
+                "none";
+
+
+            button.disabled =
+                false;
+
+
+            button.innerText =
+                "Search";
+
+        }
+
+    }
+
+
+    /* =========================================
+       ENTER KEY
+    ========================================= */
+
+    document
+        .getElementById("symbolInput")
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    searchStock();
+
+                }
+
+            }
+        );
+
+
+    /* =========================================
+       LOAD DEFAULT STOCK
+    ========================================= */
+
+    window.addEventListener(
+        "load",
+        function() {
+
+            searchStock();
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
+```
