@@ -67,6 +67,13 @@ def prediction_page():
         "prediction.html"
     )
 
+# Live Market
+@app.route("/live-market.html")
+def live_market():
+    return send_from_directory(
+        FRONTEND_FOLDER,
+        "live-market.html"
+    )
 
 # CSS
 @app.route("/style.css")
